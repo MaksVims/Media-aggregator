@@ -24,13 +24,23 @@ export interface IResponseReviewsByMovie {
   reviews: IReview[]
 }
 
-export interface IResponseTrailer {
+export interface IResponseExternalSource {
   total: number,
   items: [
     {
-      url: string,
-      name: string,
-      site: string
+      logoUrl: string,
+      platform: string,
+      url: string
+    }
+  ]
+}
+
+export interface IResponseMovieImages {
+  total: number,
+  items: [
+    {
+      imageUrl: string,
+      previewUrl: string
     }
   ]
 }

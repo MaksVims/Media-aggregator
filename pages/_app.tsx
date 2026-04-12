@@ -4,6 +4,7 @@ import AuthContext from "@/contexts/AuthContext";
 import CollectionContext from "@/contexts/CollectionContext";
 import AlertContext from "@/contexts/AlertContext";
 
+
 function MyApp({Component, pageProps}: AppProps) {
   return (
     <AuthContext>
