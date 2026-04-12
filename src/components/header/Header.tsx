@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { NAV_ITEMS } from '@/const/header';
 import { NavItem } from '@/components/header';
+import { Logo } from '@/components/ui';
 
 const Header: FC = () => {
   const router = useRouter()
@@ -19,13 +19,7 @@ const Header: FC = () => {
           ))}
         </ul>
       </nav>
-      <Image
-        src="/images/logo.png"
-        alt="logo"
-        className="object-contain"
-        width={200}
-        height={100}
-      />
+      <Logo size={80}/>
     </header>
   );
 };

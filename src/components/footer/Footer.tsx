@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
-import Logo from 'public/images/logo.png'
-import Image from 'next/image';
 import PopupTermsOfUsers from './PopupTermsOfUsers';
 import { useToggle } from '@/hooks';
+import { Logo } from '@/components/ui'
 
 const Footer: FC = () => {
   const [isOpenPopupTerms, setIsOpenPopupTerms, closePopupTerms] = useToggle()
@@ -10,13 +9,7 @@ const Footer: FC = () => {
   return (
     <footer className="bg-black p-4 text-white xl:px-8 border-2 border-transparent">
       <div className="flex flex-col items-center space-y-4 sm:flex-row sm:space-y-0 sm:justify-between">
-        <Image
-          src={Logo.src}
-          width={100}
-          height={40}
-          alt="Logo"
-          className="flex-shrink-0"
-        />
+        <Logo size={40}/>
         <div className="flex flex-col items-center space-y-2">
           <button
             type="button"
