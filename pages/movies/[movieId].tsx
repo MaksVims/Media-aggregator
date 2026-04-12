@@ -17,7 +17,6 @@ interface IMoviePageProps {
 }
 
 const MovieId: NextPage<IMoviePageProps> = ({movie, staff, responseReviews, responseExternalSource, responseMovieImages}) => {
-  console.log(responseMovieImages);
   
   return (
     <Seo
@@ -28,7 +27,7 @@ const MovieId: NextPage<IMoviePageProps> = ({movie, staff, responseReviews, resp
       <MainLayout>
         <FooterLayout>
           <main
-            className="mx-auto mt-4 xl:mb-10 max-w-[1024px] flex flex-col rounded-tl-md rounded-tr-md">
+            className="mx-auto mt-4 xl:mb-10 max-w-[1024px] flex flex-col rounded-tl-md rounded-tr-md flex-grow">
             <section
               className="flex flex-col md:mx-auto items-center bg-white py-6 px-2 md:flex-row md:items-start md:px-6">
               <MovieCardImg movie={movie}/>
@@ -43,7 +42,7 @@ const MovieId: NextPage<IMoviePageProps> = ({movie, staff, responseReviews, resp
                 
                 {responseExternalSource.items.length > 0 ? (
                   <ul className="flex flex-wrap justify-center gap-4 list-none p-0">
-                    {responseExternalSource.items.slice(0, -1).map((item, index) => (
+                    {responseExternalSource.items.filter(item => item.platform != 'Wink').map((item, index) => (
                       <li key={index}>
                         <a 
                           href={item.url} 
