@@ -35,12 +35,13 @@ const GridMovieCard: FC<IGridMoveItem> = ({ movie }) => {
     >
       <Link href={`/movies/${movieId}`}>
         <a>
-          <div className="relative">
+          <div className="relative aspect-[2/3] w-full overflow-hidden rounded-md ">
             <Image
               src={movie.posterUrlPreview || '/images/no_image.png'}
               width={475}
-              height={600}
+              height={650}
               alt={movie.nameRu}
+              objectFit='cover'
             />
             <div className="absolute left-0 top-0 full bg-black group-hover:opacity-70 opacity-0" />
             <Play className="group-hover:opacity-100 opacity-0 flex-center" />

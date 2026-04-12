@@ -37,13 +37,13 @@ const Home: NextPage<IHomePageProps> = ({dataMovies}) => {
   const paginationView = showPaginationButton(currentPage, totalPages, filter, filteredMovies) && (
     <BtnLoadNextPage
       fetching={fetchNextPage}
-      className="text-center my-8"
+      className="text-center mb-6 mt-2"
     />
   )
 
   return (
     <Seo
-      title={"Hulu"}
+      title={"AM"}
       keywords={"Лучшие фильмы, топ фильмов"}
     >
       <MainLayout>

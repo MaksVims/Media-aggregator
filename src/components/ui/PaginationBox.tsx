@@ -10,7 +10,7 @@ interface PaginationBox {
 const PaginationBox: FC<PaginationBox> = ({ loading, children, movies }) => {
   return (
     <div 
-    className={`relative bg-primary-dark ${movies.length && "h-[100px]"}`}>
+    className={`relative bg-primary-dark mt-auto ${movies.length && "h-[70px]"}`}>
       {loading ? <Loader /> : children}
     </div>
   )
