@@ -1,5 +1,5 @@
 {
-  "name": "hulu-movie-site",
+  "name": "am-aggregator-media",
   "private": true,
   "scripts": {
     "dev": "next dev",
