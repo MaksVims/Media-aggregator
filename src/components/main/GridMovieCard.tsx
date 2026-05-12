@@ -31,7 +31,7 @@ const GridMovieCard: FC<IGridMoveItem> = ({ movie }) => {
 
   return (
     <article
-      className="group cursor-pointer transform transition-transform duration-200 sm:hover:scale-105 "
+      className="group cursor-pointer transform transition-transform duration-200 sm:hover:scale-105 overlfow-hidden"
     >
       <Link href={`/movies/${movieId}`}>
         <a>
@@ -77,7 +77,7 @@ const GridMovieCard: FC<IGridMoveItem> = ({ movie }) => {
       </Link>
       <div className="mt-2 text-white md:mt-3 flex justify-between">
         <h2 className="font-medium font-bold">
-          {movie.nameRu}
+          {movie.nameRu.length > 35 ? movie.nameRu.slice(0,35) + '...' : movie.nameRu}
         </h2>
       </div>
     </article>
