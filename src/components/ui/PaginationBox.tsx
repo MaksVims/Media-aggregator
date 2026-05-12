@@ -11,7 +11,7 @@ const PaginationBox: FC<PaginationBox> = ({ loading, children, movies }) => {
   return (
     <div 
     className={` relative bg-primary-dark mt-auto w-full flex flex-col items-center justify-end 
-      ${movies.length ? "h-[70px]" : "h-auto"} `}>
+      ${movies.length ? "h-[70px] pb-2" : "h-auto"} `}>
       {loading ? <Loader /> : children}
     </div>
   )
