@@ -28,11 +28,7 @@ class MoviesState {
       this.sortDirection = this.sortDirection === 'desc' ? 'asc' : 'desc'
     } else {
       this.filter = type
-      if (type === SortType.RATING || type === SortType.YEAR) {
-        this.sortDirection = 'desc'
-      } else if (type === SortType.NAME) {
-        this.sortDirection = 'asc'
-      }
+      this.sortDirection = 'desc'
     }
   }
 
@@ -75,7 +71,7 @@ class MoviesState {
       case SortType.NAME:
         result.sort((a, b) => {
           const comparison = a.nameRu.localeCompare(b.nameRu)
-          return this.sortDirection === 'desc' ? -comparison : comparison
+          return this.sortDirection === 'desc' ? comparison : -comparison
         })
         break
 
