@@ -16,7 +16,7 @@ interface IPremieresPageProps {
 const PremieresPage: NextPage<IPremieresPageProps> = ({dataMovies}) => {
   useEffect(() => {
     MoviesState.setMovies(dataMovies.items)
-    return () => MoviesState.resetMovies()
+    return () => MoviesState.reset()
   }, [dataMovies.items])
 
   const filteredMovies = MoviesState.filteredMovies

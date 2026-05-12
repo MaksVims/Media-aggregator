@@ -29,7 +29,7 @@ const SearchPage: NextPage<SearchPageProps> = ({dataMovies}) => {
 
   useEffect(() => {
     MoviesState.setMovies(dataMovies.films)
-    return () => MoviesState.resetMovies()
+    return () => MoviesState.reset()
   }, [dataMovies.films])
 
   const paginationView = currentPage < totalPages && filter !== SortType.FAVORITE && filteredMovies.length && (
