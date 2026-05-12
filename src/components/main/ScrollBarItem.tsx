@@ -10,12 +10,20 @@ interface ScrollBarItemProps {
 
 const ScrollBarItem: FC<ScrollBarItemProps> = ({ item }) => {
   const router = useRouter()
-  const isActive = router.asPath === `/${item.title}`
+  const isActive = item.title === 'all' ? router.asPath === '/' : router.asPath === `/${item.title}`
   const itemClass = cn({
     'text-primary-light': isActive,
     'text-white whitespace-nowrap cursor-pointer text-xl transition-transform': true,
     'transform duration-100 active:text-primary-light hover:scale-125 md:text-2xl': true,
   })
+
+  const handleClick = (isAll:boolean) => {
+    if(isAll) {
+      router.push('/')
+      return
+    }
+    router.push(`/${item.title}`)
+  }
 
   return (
     <li
@@ -23,7 +31,7 @@ const ScrollBarItem: FC<ScrollBarItemProps> = ({ item }) => {
       aria-selected={isActive}
       className={itemClass}
       onPointerDown={(e) => e.preventDefault()}
-      onClick={() => router.push(`/${item.title}`)}
+      onClick={() => handleClick(item.title === 'all')}
     >
       {formatFirstToUppercase(item.genre)}
     </li>

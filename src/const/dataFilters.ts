@@ -3,6 +3,11 @@ import { IDataFilterGenre } from 'types';
 export const DATA_FILTERS: IDataFilterGenre = {
   genres: [
     {
+      id: 0,
+      genre: 'все',
+      title: 'all'
+    },
+    {
       id: 6,
       genre: 'комедия',
       title: 'comedy',

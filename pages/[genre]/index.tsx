@@ -14,6 +14,7 @@ import { BarSortFilters, GridMovies, ScrollBarGenre } from '@/components/main';
 import { Seo } from '@/hoc';
 import { PaginationBox } from '@/components/ui';
 
+
 interface IGenrePageProps {
   dataMovies: IResponseMoviesByFiltersOrTop,
   genre: string,
@@ -84,6 +85,16 @@ interface IParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps<IGenrePageProps, IParams> = async (context) => {
   try {
     const { genre } = context.params!
+
+    if(genre === 'all') {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        }
+      }
+    }
+
     const filterItem = DATA_FILTERS.genres.find((item: IFilterGenre) => item.title === genre)!
     const dataMovies = await MovieService.getMoviesByFilters({ genre: filterItem.id, page: 1 })
 
