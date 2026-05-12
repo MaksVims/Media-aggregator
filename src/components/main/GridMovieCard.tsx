@@ -46,7 +46,7 @@ const GridMovieCard: FC<IGridMoveItem> = ({ movie }) => {
             <div className="absolute left-0 top-0 full bg-black group-hover:opacity-70 opacity-0" />
             <Play className="group-hover:opacity-100 opacity-0 flex-center" />
             {
-              movie.year && Number(movie.year) !== null 
+              movie.year && !isNaN(Number(movie.year))
               && (
               <span className="bubble top-2 left-2">
                 {movie.year}

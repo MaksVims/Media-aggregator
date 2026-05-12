@@ -8,7 +8,7 @@ interface IGridMovies {
 
 const GridMovies: FC<IGridMovies> = ({ movies }) => (
   <section
-    className="grid my-8 px-4 gap-y-8 gap-x-4 
+    className="grid my-9 px-4 gap-y-8 gap-x-4 
     grid-cols-2           
     xs:grid-cols-3 
     sm:grid-cols-4 
