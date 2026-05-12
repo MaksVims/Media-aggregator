@@ -37,7 +37,7 @@ const GenrePage: NextPage<IGenrePageProps> = ({ dataMovies, genre, genreId }) =>
 
   useEffect(() => {
     MoviesState.setMovies(dataMovies.films)
-    return () => MoviesState.resetMovies()
+    return () => MoviesState.reset()
   }, [dataMovies.films])
 
   const paginationView = showPaginationButton(currentPage, totalPages, filter, filteredMovies) && (

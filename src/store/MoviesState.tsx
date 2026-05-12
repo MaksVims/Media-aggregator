@@ -5,13 +5,12 @@ import { MovieForGrid } from '@/factory/MovieForGrid';
 import CollectionState from '@/store/CollectionState';
 
 class MoviesState {
-  movies: IMovieForGrid[]
-
-  filter: SortType
+  movies: IMovieForGrid[] = []
+  filter: SortType = SortType.DEFAULT
+  sortDirection: 'asc' | 'desc' = 'desc'
+  viewMode: 'all' | 'favorite' = 'all'     
 
   constructor() {
-    this.movies = []
-    this.filter = SortType.DEFAULT
     makeAutoObservable(this)
   }
 
@@ -20,48 +19,72 @@ class MoviesState {
     this.movies = [...this.movies, ...getCleanListMoviesForGrid(newMovies)]
   }
 
-  setFilter(filter: SortType) {
-    this.filter = filter
+  setViewMode = (mode: 'all' | 'favorite') => {
+    this.viewMode = mode
   }
 
-  resetMovies() {
-    this.movies = []
+  setFilter = (type: SortType) => {
+    if (this.filter === type) {
+      this.sortDirection = this.sortDirection === 'desc' ? 'asc' : 'desc'
+    } else {
+      this.filter = type
+      if (type === SortType.RATING || type === SortType.YEAR) {
+        this.sortDirection = 'desc'
+      } else if (type === SortType.NAME) {
+        this.sortDirection = 'asc'
+      }
+    }
   }
 
   reset() {
     this.filter = SortType.DEFAULT
+    this.sortDirection = 'desc'
+    this.viewMode = 'all'
     this.movies = []
   }
 
   get filteredMovies(): MovieForGrid[] {
-    const favoriteMovies = CollectionState.moviesToCollection
+    let result = [...this.movies]
 
+    // Сначала фильтруем по режиму просмотра
+    if (this.viewMode === 'favorite') {
+      const favorites = CollectionState.moviesToCollection
+      result = result.filter(movie => 
+        favorites.some(fav => fav.movieId === movie.movieId)
+      )
+    }
+
+    // Затем применяем сортировку
     switch (this.filter) {
-      case SortType.FAVORITE:
-        return this.movies
-          .filter((movie) => favoriteMovies
-            .find((favorite) => favorite.movieId === movie.movieId))
       case SortType.RATING:
-        if (this.movies[0]?.rating) {
-          return this.movies
-            .slice()
-            .sort((a, b) => Number(b.rating) - Number(a.rating))
-        }
-        return this.movies
+        result.sort((a, b) => {
+          const valA = Number(a.rating) || 0
+          const valB = Number(b.rating) || 0
+          return this.sortDirection === 'desc' ? valB - valA : valA - valB
+        })
+        break
 
       case SortType.YEAR:
-        return this.movies
-          .slice()
-          .sort((a, b) => Number(b.year) - Number(a.year))
+        result.sort((a, b) => {
+          const valA = Number(a.year) || 0
+          const valB = Number(b.year) || 0
+          return this.sortDirection === 'desc' ? valB - valA : valA - valB
+        })
+        break
+
       case SortType.NAME:
-        return this.movies
-          .slice()
-          .sort((a, b) => a.nameRu.localeCompare(b.nameRu))
+        result.sort((a, b) => {
+          const comparison = a.nameRu.localeCompare(b.nameRu)
+          return this.sortDirection === 'desc' ? -comparison : comparison
+        })
+        break
+
       case SortType.DEFAULT:
-        return this.movies
       default:
-        return this.movies
+        break
     }
+
+    return result
   }
 }
 
