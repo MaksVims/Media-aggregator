@@ -2,12 +2,19 @@ import React, { FC } from 'react';
 import { observer } from 'mobx-react-lite';
 import { FiltersState } from '@/store';
 import { ScrollBarItem } from '@/components/main';
+import { useDragScroll } from '@/hooks';
 
 const ScrollBarGenre: FC = () => {
   const { allGenres } = FiltersState
+  const [scrollRef, handleMouseDown] = useDragScroll(1.5)
+
   return (
     <div className="relative">
-      <ul className="pt-4 px-8 flex xl:space-x-16 space-x-10 overflow-x-scroll scrollbar-hide ">
+      <ul 
+        ref={scrollRef as React.RefObject<HTMLUListElement>}
+        className="pt-4 px-8 flex xl:space-x-16 space-x-10 overflow-x-scroll scrollbar-hide select-none cursor-grab active:cursor-grabbing user-select-none"
+        onMouseDown={handleMouseDown}
+      >
         {allGenres.map((genre) => (
           <ScrollBarItem
             key={genre.id}
