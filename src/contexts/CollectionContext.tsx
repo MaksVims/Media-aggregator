@@ -8,24 +8,18 @@ import { CustomError } from '@/factory/CustomError';
 const CollectionContext = React.createContext({})
 
 const CollectionProvider: FC = ({ children }) => {
-  const { user } = useAuth()
+  const { user, loadingUser } = useAuth()
   const { showAlert } = useAlert()
 
   useEffect(() => {
-    const loadCollection = async () => {
-      if (user) {
-        await CollectionState.loadCollection(user.uid)
-      }
-    }
+    if (loadingUser || !user) return
 
-    try {
-      loadCollection()
-    } catch (e) {
+    CollectionState.loadCollection(user.uid).catch((e) => {
       if (e instanceof CustomError) {
         showAlert(e.message, AlertType.ERROR)
       }
-    }
-  }, [user])
+    })
+  }, [user, loadingUser])
 
   return (
     <CollectionContext.Provider value={{}}>

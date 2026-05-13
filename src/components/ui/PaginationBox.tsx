@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { Loader } from '@/components/ui';
 import { IMovie } from 'types';
 
 interface PaginationBox {
@@ -9,10 +8,11 @@ interface PaginationBox {
 
 const PaginationBox: FC<PaginationBox> = ({ loading, children, movies }) => {
   return (
-    <div 
-    className={` relative bg-primary-dark mt-auto w-full flex flex-col items-center justify-end 
-      ${movies.length ? "h-[70px] pb-2" : "h-auto"} `}>
-      {loading ? <Loader /> : children}
+    <div
+      className={`bg-primary-dark mt-auto w-full flex items-center justify-center
+      ${movies.length ? 'h-[90px]' : 'h-auto'}`}
+    >
+      {loading ? <div className="lds-dual-ring" /> : children}
     </div>
   )
 }

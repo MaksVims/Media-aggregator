@@ -1,18 +1,10 @@
 import React, { FC } from 'react'
-import ContentLoader from 'react-content-loader'
 
-const MyLoader: FC = () => (
-  <ContentLoader
-    speed={2}
-    width="auto"
-    height="auto"
-    viewBox="0 0 400 450"
-    backgroundColor="#06202b"
-    foregroundColor="#6b6b6b"
-  >
-    <rect x="0" y="0" rx="0" ry="0" width="250" height="400" className="rounded-md w-full" />
-    <rect x="0" y="410" rx="0" ry="0" width="250" height="24" className="rounded-md w-full" />
-  </ContentLoader>
+const MovieCardLoader: FC = () => (
+  <div className="animate-pulse w-full">
+    <div className="relative w-full rounded-md bg-gray-600" style={{ paddingBottom: '150%' }} />
+    <div className="mt-2 h-3 bg-gray-600 rounded w-3/4" />
+  </div>
 )
 
-export default MyLoader
+export default MovieCardLoader

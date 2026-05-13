@@ -26,7 +26,7 @@ class CollectionState {
       const res = await FirebaseCollectionService.loadCollection(userId, updateResolver)
 
       this.collection = res === null ? {} : res
-    } catch {
+    } catch (e) {
       throw new CustomError(errorsMessage.LOAD_COLLECTION)
     } finally {
       this.loading = false

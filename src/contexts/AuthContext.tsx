@@ -14,10 +14,9 @@ const AuthContext = React.createContext<IAuthContext>({} as IAuthContext)
 
 const AuthContextProvider: FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
-  const [loadingUser, setLoadingUser] = useState(false)
+  const [loadingUser, setLoadingUser] = useState(true)
 
   useEffect(() => {
-    setLoadingUser(true)
     return onAuthStateChanged(auth, (user) => {
       if (user) {
         document.cookie = `${TOKEN}=${user?.refreshToken};max-age=3600;path=/`
