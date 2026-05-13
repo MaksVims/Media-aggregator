@@ -15,14 +15,14 @@ interface PersonPageProps {
 
 export const PersonPage: NextPage<PersonPageProps> = ({person}) => {
   const uniqMovies = useMemo(() => getUniqMoviesForPerson(person), [person])
-
+  
   useEffect(() => {
     MoviesState.setMovies(uniqMovies)
     return () => MoviesState.reset()
   }, [uniqMovies])
-
+  
   const filteredMovies = MoviesState.filteredMovies
-
+  
   return (
     <MainLayout>
       <div className="max-w-[1024px] mx-auto full">

@@ -14,8 +14,6 @@ class MoviesState {
   }
 
   setMovies(movies: IMovie[]) {
-    console.log(movies);
-    
     this.movies = [...this.movies, ...getCleanListMoviesForGrid(movies)]
   }
 

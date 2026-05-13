@@ -12,5 +12,5 @@ export default function getUniqMoviesForPerson(person: ISpecificStaff) {
   })
 
   return Object.values(uniqFilms)
-    .filter((film) => film.nameRu && film.rating)
+    .filter((film) => film.nameRu)
 }

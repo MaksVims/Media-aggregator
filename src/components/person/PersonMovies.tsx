@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
-import { MovieForGrid } from '@/factory/movieNormalize';
 import { BarSortFiltersPerson } from '@/components/person';
 import { BoxDisplayCenter } from '@/components/ui';
+import { IMovie } from 'types';
 
 interface PersonMoviesProps {
-  filteredMovies: MovieForGrid[]
+  filteredMovies: IMovie[]
 }
 
 const PersonMovies: FC<PersonMoviesProps> = ({ filteredMovies }) => (

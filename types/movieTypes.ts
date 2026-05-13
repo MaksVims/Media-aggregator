@@ -50,6 +50,11 @@ export interface ISingleMovie {
   genres: [{ genre: string }],
 }
 
+export interface IPersonMovie {
+  filmId: number,
+  nameRu: string,
+}
+
 export type ReviewType = 'POSITIVE' | 'NEUTRAL' | 'NEGATIVE'
 
 export interface IReview {

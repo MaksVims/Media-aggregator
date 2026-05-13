@@ -23,6 +23,6 @@ export interface ISpecificStaff {
   birthplace: string,
   profession: string,
   growth: number,
-  facts: string[]
+  facts: string[],
   films: IMovie[]
 }
