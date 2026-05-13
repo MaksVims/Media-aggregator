@@ -9,6 +9,7 @@ import {
   IResponseExternalSource,
   ISingleMovie,
   IResponseMovieImages,
+  IResponseMovieFacts,
 } from 'types'
 
 export default class MovieService {
@@ -80,5 +81,11 @@ export default class MovieService {
   static async getMovieImages(movieId: number): Promise<IResponseMovieImages> {
     const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${movieId}/images`
     return await fetchMovies(url) as IResponseMovieImages
+  }
+
+  // Получить список фактов и ошибок в фильме
+  static async getMovieFacts(movieId: number): Promise<IResponseMovieFacts> {
+    const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${movieId}/facts`
+    return await fetchMovies(url) as IResponseMovieFacts
   }
 }

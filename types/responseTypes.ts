@@ -27,16 +27,25 @@ export interface IResponseReviewsByMovie {
 export interface IResponseExternalSource {
   total: number,
   items: {
-      logoUrl: string,
-      platform: string,
-      url: string
+    logoUrl: string,
+    platform: string,
+    url: string
   }[]
 }
 
 export interface IResponseMovieImages {
   total: number,
-  items:{
-      imageUrl: string,
-      previewUrl: string
-    }[]
+  items: {
+    imageUrl: string,
+    previewUrl: string
+  }[]
+}
+
+export interface IResponseMovieFacts {
+  total: number,
+  items: {
+    text: string,
+    type: 'FACT' | 'BLOOPER',
+    spoiler: boolean
+  }[]
 }

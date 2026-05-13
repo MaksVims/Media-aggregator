@@ -158,6 +158,13 @@ body {
   transition: max-height .3s ease;
 }
 
+.fact-text a {
+  pointer-events: none;
+  cursor: text;
+  color: inherit;
+  text-decoration: none;
+}
+
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;

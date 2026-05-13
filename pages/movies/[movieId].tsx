@@ -1,21 +1,22 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
 
-import { IResponseReviewsByMovie, IResponseExternalSource, ISingleMovie, IStaffByMovie, IResponseMovieImages } from "types";
+import { IResponseReviewsByMovie, IResponseExternalSource, ISingleMovie, IStaffByMovie, IResponseMovieImages, IResponseMovieFacts } from "types";
 import { MovieService, StaffService } from "@/api";
 import { Seo } from "@/hoc";
 import { FooterLayout, MainLayout } from "@/components/layouts";
-import { MovieCardContent, MovieCardImg, ReviewItem, PosterMovie } from "@/components/singleMovie";
+import { MovieCardContent, MovieCardImg, ReviewItem, PosterMovie, MovieFacts } from "@/components/singleMovie";
 
 interface IMoviePageProps {
   movie: ISingleMovie,
   staff: IStaffByMovie[]
   responseReviews: IResponseReviewsByMovie
   responseExternalSource: IResponseExternalSource,
-  responseMovieImages: IResponseMovieImages
+  responseMovieImages: IResponseMovieImages,
+  responseFacts: IResponseMovieFacts
 }
 
-const MovieId: NextPage<IMoviePageProps> = ({ movie, staff, responseReviews, responseExternalSource, responseMovieImages }) => {
+const MovieId: NextPage<IMoviePageProps> = ({ movie, staff, responseReviews, responseExternalSource, responseMovieImages, responseFacts }) => {
 
   return (
     <Seo
@@ -68,6 +69,7 @@ const MovieId: NextPage<IMoviePageProps> = ({ movie, staff, responseReviews, res
               </div>
             </section>
             <PosterMovie images={responseMovieImages} />
+            <MovieFacts facts={responseFacts} />
 
             {(() => {
               const reviews = responseReviews.reviews?.filter(r => r.reviewTitle) ?? []
@@ -113,6 +115,7 @@ export const getStaticProps: GetStaticProps<IMoviePageProps, IParams> = async (c
     const responseReviews = await MovieService.getReviewsByMovie(Number(movieId))
     const responseExternalSource = await MovieService.getExternalSource(Number(movieId))
     const responseMovieImages = await MovieService.getMovieImages(Number(movieId))
+    const responseFacts = await MovieService.getMovieFacts(Number(movieId))
 
     return {
       props: {
@@ -120,7 +123,8 @@ export const getStaticProps: GetStaticProps<IMoviePageProps, IParams> = async (c
         staff,
         responseReviews,
         responseExternalSource,
-        responseMovieImages
+        responseMovieImages,
+        responseFacts
       }
     }
   } catch {
