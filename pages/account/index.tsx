@@ -25,17 +25,7 @@ const Profile: NextPage = () => {
         <main className="flex-1 overflow-hidden relative z-10 flex justify-center px-4 py-4 pb-6">
           <section className="w-full max-w-[1000px] flex flex-col gap-4 h-full">
 
-            {/* Верхний ряд — фиксированная высота */}
-            <div className="flex flex-col md:flex-row gap-4 flex-shrink-0">
-              <div className="bg-white p-6 rounded-md w-full flex-1 text-black flex flex-col relative">
-                <UserCardProfile user={user!} classNames="w-full bg-white rounded-md" />
-              </div>
-              <div className="bg-white p-6 rounded-md flex justify-center items-center md:w-auto w-full">
-                <AccountControlPanel />
-              </div>
-            </div>
-
-            {/* Блок с фильмами — занимает остаток высоты, скроллится внутри */}
+            {/* Блок с фильмами — занимает основную высоту, скроллится внутри */}
             <div className="flex-1 min-h-0 bg-white rounded-md p-6 text-black relative overflow-y-auto">
               {loadCollection ? (
                 <div className="absolute inset-0 flex items-center justify-center bg-white rounded-md z-20">
@@ -44,6 +34,16 @@ const Profile: NextPage = () => {
               ) : (
                 <FavoriteMovieList classNames="w-full" title="Любимые фильмы" movies={collection} />
               )}
+            </div>
+
+            {/* Нижний ряд — профиль и управление аккаунтом */}
+            <div className="flex flex-col md:flex-row gap-4 flex-shrink-0">
+              <div className="bg-white p-6 rounded-md w-full flex-1 text-black flex flex-col relative">
+                <UserCardProfile user={user!} classNames="w-full bg-white rounded-md" />
+              </div>
+              <div className="bg-white p-6 rounded-md flex justify-center items-center md:w-auto w-full">
+                <AccountControlPanel />
+              </div>
             </div>
 
           </section>

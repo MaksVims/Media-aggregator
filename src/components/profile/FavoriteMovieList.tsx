@@ -39,11 +39,13 @@ const FavoriteMovieList: FC<FavoriteMovieListProps> = ({ title, movies, classNam
         placeholder="Поиск по названию..."
         className="input w-full mb-5 text-sm"
       />
-      {filtered.length ? (
-        <GridMovies movies={filtered} onEdit={handleEdit} isProfile className="pb-4" />
-      ) : (
-        <BoxDisplayCenter title={movies.length ? 'Ничего не найдено' : 'Фильмы отсутствуют'} />
-      )}
+      <div className="relative min-h-[120px]">
+        {filtered.length ? (
+          <GridMovies movies={filtered} onEdit={handleEdit} isProfile className="pb-4" />
+        ) : (
+          <BoxDisplayCenter title={movies.length ? 'Ничего не найдено' : 'Фильмы отсутствуют'} />
+        )}
+      </div>
       {editingMovie && (
         <PopupEditFavoriteMovie
           key={editingMovie.movieId}
