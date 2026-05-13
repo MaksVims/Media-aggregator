@@ -30,7 +30,6 @@ const ScrollBarItem: FC<ScrollBarItemProps> = ({ item }) => {
       role="option"
       aria-selected={isActive}
       className={itemClass}
-      onPointerDown={(e) => e.preventDefault()}
       onClick={() => handleClick(item.title === 'all')}
     >
       {formatFirstToUppercase(item.genre)}

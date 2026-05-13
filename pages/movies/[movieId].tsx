@@ -5,8 +5,7 @@ import { IResponseReviewsByMovie, IResponseExternalSource, ISingleMovie, IStaffB
 import { MovieService, StaffService } from "@/api";
 import { Seo } from "@/hoc";
 import { FooterLayout, MainLayout } from "@/components/layouts";
-import { MovieCardContent, MovieCardImg, ReviewItem } from "@/components/singleMovie";
-
+import { MovieCardContent, MovieCardImg, ReviewItem, PosterMovie } from "@/components/singleMovie";
 
 interface IMoviePageProps {
   movie: ISingleMovie,
@@ -29,12 +28,12 @@ const MovieId: NextPage<IMoviePageProps> = ({ movie, staff, responseReviews, res
           <main
             className="mx-auto mt-4 xl:mb-10 max-w-[1024px] flex flex-col rounded-tl-md rounded-tr-md flex-grow">
             <section
-              className="flex flex-col md:mx-auto items-center bg-white pt-6 pb-4 px-2 md:flex-row md:items-start md:px-6">
+              className="flex flex-col md:mx-auto items-center bg-white py-7 px-2 md:flex-row md:items-start md:px-6">
               <MovieCardImg movie={movie} />
               <MovieCardContent movie={movie} staff={staff} />
             </section>
 
-            <section className="py-4 bg-white text-center border-t border-gray-100">
+            <section className="py-7 bg-white text-center">
               <div className="px-4">
                 <h2 className="text-lg font-semibold mb-4 text-gray-800">
                   Смотреть «{movie.nameRu}» на платформах:
@@ -68,12 +67,14 @@ const MovieId: NextPage<IMoviePageProps> = ({ movie, staff, responseReviews, res
                 )}
               </div>
             </section>
+            <PosterMovie images={responseMovieImages} />
+
             {(() => {
               const reviews = responseReviews.reviews?.filter(r => r.reviewTitle) ?? []
               return reviews.length > 0 ? (
-                <section className="pt-6 bg-white text-center">
-                  <ul className="px-2 p-4 sm:px-4 space-y-4">
-                    <h2 className="text-xl font-semibold my-4">Рецензии на фильм</h2>
+                <section className="py-7 bg-white text-center">
+                  <ul className="px-4 space-y-4">
+                    <h2 className="text-xl font-semibold mb-4">Рецензии на фильм</h2>
                     {reviews.map(review => (
                       <li key={review.reviewId}>
                         <ReviewItem review={review} />

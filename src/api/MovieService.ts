@@ -36,7 +36,7 @@ export default class MovieService {
   }
 
   // Получить данные фильма по id
-  static async getMovieById(movieId: number):Promise<ISingleMovie> {
+  static async getMovieById(movieId: number): Promise<ISingleMovie> {
     const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${movieId}`
     return await fetchMovies(url) as ISingleMovie
   }

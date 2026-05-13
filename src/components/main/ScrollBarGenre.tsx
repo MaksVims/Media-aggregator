@@ -6,14 +6,19 @@ import { useDragScroll } from '@/hooks';
 
 const ScrollBarGenre: FC = () => {
   const { allGenres } = FiltersState
-  const [scrollRef, handleMouseDown] = useDragScroll(1.5)
+  const [scrollRef, handleMouseDown, hasDragged] = useDragScroll(1.5)
 
   return (
     <div className="relative">
-      <ul 
+      <ul
         ref={scrollRef as React.RefObject<HTMLUListElement>}
         className="pt-4 px-8 flex xl:space-x-16 space-x-10 overflow-x-scroll scrollbar-hide select-none cursor-grab active:cursor-grabbing user-select-none"
         onMouseDown={handleMouseDown}
+        onClickCapture={
+          (e) => {
+            if (hasDragged.current) { e.preventDefault(); e.stopPropagation() }
+          }
+        }
       >
         {allGenres.map((genre) => (
           <ScrollBarItem
