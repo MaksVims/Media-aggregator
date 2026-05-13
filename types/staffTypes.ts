@@ -1,4 +1,4 @@
-import { IPersonMovie } from 'types';
+import { IMovie } from 'types';
 
 export type PROFESSION_KEY = 'PRODUCER' | 'ACTOR'
 
@@ -24,5 +24,5 @@ export interface ISpecificStaff {
   profession: string,
   growth: number,
   facts: string[]
-  films: IPersonMovie[]
+  films: IMovie[]
 }
