@@ -1,13 +1,13 @@
-import { IPersonMovie, ISpecificStaff } from 'types';
+import { IMovie, ISpecificStaff } from 'types';
 
 export default function getUniqMoviesForPerson(person: ISpecificStaff) {
   const films = person.films.slice()
-  const uniqFilms: { [key: string]: IPersonMovie } = {}
+  const uniqFilms: { [key: string]: IMovie } = {}
 
   films.filter((film) => {
-    if (uniqFilms[film.filmId]) return false
+    if (uniqFilms[film.movieId]) return false
 
-    uniqFilms[film.filmId] = film
+    uniqFilms[film.movieId] = film
     return true
   })
 
