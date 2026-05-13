@@ -1,11 +1,11 @@
-import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import {ParsedUrlQuery} from "querystring";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { ParsedUrlQuery } from "querystring";
 
-import {IResponseReviewsByMovie, IResponseExternalSource, ISingleMovie, IStaffByMovie, IResponseMovieImages} from "types";
-import {MovieService, StaffService} from "@/api";
-import {Seo} from "@/hoc";
-import {FooterLayout, MainLayout} from "@/components/layouts";
-import {MovieCardContent, MovieCardImg, ReviewItem} from "@/components/singleMovie";
+import { IResponseReviewsByMovie, IResponseExternalSource, ISingleMovie, IStaffByMovie, IResponseMovieImages } from "types";
+import { MovieService, StaffService } from "@/api";
+import { Seo } from "@/hoc";
+import { FooterLayout, MainLayout } from "@/components/layouts";
+import { MovieCardContent, MovieCardImg, ReviewItem } from "@/components/singleMovie";
 
 
 interface IMoviePageProps {
@@ -16,8 +16,8 @@ interface IMoviePageProps {
   responseMovieImages: IResponseMovieImages
 }
 
-const MovieId: NextPage<IMoviePageProps> = ({movie, staff, responseReviews, responseExternalSource, responseMovieImages}) => {
-  
+const MovieId: NextPage<IMoviePageProps> = ({ movie, staff, responseReviews, responseExternalSource, responseMovieImages }) => {
+
   return (
     <Seo
       title={movie.nameRu}
@@ -29,34 +29,34 @@ const MovieId: NextPage<IMoviePageProps> = ({movie, staff, responseReviews, resp
           <main
             className="mx-auto mt-4 xl:mb-10 max-w-[1024px] flex flex-col rounded-tl-md rounded-tr-md flex-grow">
             <section
-              className="flex flex-col md:mx-auto items-center bg-white py-6 px-2 md:flex-row md:items-start md:px-6">
-              <MovieCardImg movie={movie}/>
-              <MovieCardContent movie={movie} staff={staff}/>
-            </section>  
+              className="flex flex-col md:mx-auto items-center bg-white pt-6 pb-4 px-2 md:flex-row md:items-start md:px-6">
+              <MovieCardImg movie={movie} />
+              <MovieCardContent movie={movie} staff={staff} />
+            </section>
 
-            <section className="pt-6 pb-8 bg-white flex-1 text-center border-t border-gray-100">
+            <section className="py-4 bg-white text-center border-t border-gray-100">
               <div className="px-4">
                 <h2 className="text-lg font-semibold mb-4 text-gray-800">
                   Смотреть «{movie.nameRu}» на платформах:
                 </h2>
-                
+
                 {responseExternalSource.items.length > 0 ? (
                   <ul className="flex flex-wrap justify-center gap-4 list-none p-0">
                     {responseExternalSource.items.filter(item => item.platform != 'Wink').map((item, index) => (
                       <li key={index}>
-                        <a 
-                          href={item.url} 
-                          target="_blank" 
+                        <a
+                          href={item.url}
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="group flex flex-col items-center transition-transform hover:scale-105"
                           aria-label={`Смотреть на ${item.platform}`}
                         >
                           <div className="flex items-center justify-center p-4 rounded-2xl bg-gray-50 border border-gray-100 group-hover:border-blue-200 group-hover:shadow-sm transition-all">
-                            <img 
-                              src={item.logoUrl} 
+                            <img
+                              src={item.logoUrl}
                               alt={item.platform}
                               className="max-w-full max-h-full object-contain"
-                              style={{width:'60px'}}
+                              style={{ width: '60px' }}
                             />
                           </div>
                         </a>
@@ -68,36 +68,21 @@ const MovieId: NextPage<IMoviePageProps> = ({movie, staff, responseReviews, resp
                 )}
               </div>
             </section>
-            <section className="pt-6 bg-white flex-1 text-center">
-              {/* <div className="px-4">
-                <h2 className="font-medium mb-2 space-x-1">
-                  <span>Смотреть трейлер {movie.nameRu} онлайн</span>
-                  <a
-                    // href={`${responseTrailer.items}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="link-blur-color"
-                  >
-                    тут
-                  </a>
-                </h2>
-              </div> */}
-              {/* <video
-                src="#"
-                controls={true}
-                className="flex-1 h-[400px] w-full"
-              /> */}
-              <ul className="px-2 p-4 sm:!px-4 space-y-4">
-                <h2 className="text-xl font-semibold my-4">Рецензии на фильм</h2>
-                {responseReviews.reviews
-                  ?.filter(review => review.reviewTitle)
-                  .map(review => (
-                    <li key={review.reviewId}>
-                      <ReviewItem review={review}/>
-                    </li>
-                  ))}
-              </ul>
-            </section>
+            {(() => {
+              const reviews = responseReviews.reviews?.filter(r => r.reviewTitle) ?? []
+              return reviews.length > 0 ? (
+                <section className="pt-6 bg-white text-center">
+                  <ul className="px-2 p-4 sm:px-4 space-y-4">
+                    <h2 className="text-xl font-semibold my-4">Рецензии на фильм</h2>
+                    {reviews.map(review => (
+                      <li key={review.reviewId}>
+                        <ReviewItem review={review} />
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ) : null
+            })()}
           </main>
         </FooterLayout>
       </MainLayout>
@@ -120,7 +105,7 @@ interface IParams extends ParsedUrlQuery {
 }
 
 export const getStaticProps: GetStaticProps<IMoviePageProps, IParams> = async (context) => {
-  const {movieId} = context.params!
+  const { movieId } = context.params!
   try {
     const movie = await MovieService.getMovieById(Number(movieId))
     const staff = await StaffService.getStaffByMovie(Number(movieId))

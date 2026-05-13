@@ -155,7 +155,7 @@ body {
 }
 
 .smooth-height {
-  transition: max-height .9s;
+  transition: max-height .3s ease;
 }
 
 .line-clamp-2 {

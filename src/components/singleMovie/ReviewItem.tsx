@@ -27,7 +27,7 @@ const ReviewItem: FC<ReviewItemProps> = ({ review }) => {
   })
 
   const contentClass = cn({
-    'space-y-4 smooth-height px-4 sm:px-6': true,
+    'smooth-height px-4 sm:px-6': true,
     'overflow-hidden max-h-0': !isOpen,
   })
 
@@ -36,35 +36,28 @@ const ReviewItem: FC<ReviewItemProps> = ({ review }) => {
       <button
         type="button"
         onClick={() => setIsOpen()}
-        className="font-semibold w-full p-4"
+        className="w-full p-4 text-left"
       >
-        {review.reviewTitle}
+        <div className="flex items-center justify-between gap-3">
+          <p className="font-semibold text-sm">{review.reviewTitle}</p>
+          <p className="flex-shrink-0 text-xs text-gray-500">{review.reviewAutor}</p>
+        </div>
       </button>
-      <div
-        className={contentClass}
-        ref={containerRef}
-      >
-        <div className="text-left text-xs space-y-2 text-gray-color flex items-center justify-between">
-          <div>
-            <h4>
-              <i>
-                Автор:
-                {' ' + review.reviewAutor}
-              </i>
-            </h4>
-            <data>
-              {getFormatDate(review.reviewData)}
-            </data>
-          </div>
 
+      <div className={contentClass} ref={containerRef}>
+        <p className="text-gray-color text-xs text-justify">
+          {review.reviewDescription}
+        </p>
+        <div className="text-left text-xs text-gray-color flex items-center justify-between py-3 mt-2 border-t border-black/10">
+          <div>
+            <i>Автор: {review.reviewAutor}</i>
+            <div>{getFormatDate(review.reviewData)}</div>
+          </div>
           <LikeAndDislikeBar
             dislikeValue={review.userNegativeRating}
             likeValue={review.userPositiveRating}
           />
         </div>
-        <p className="text-gray-color text-xs text-justify pb-4">
-          {review.reviewDescription}
-        </p>
       </div>
     </article>
   );

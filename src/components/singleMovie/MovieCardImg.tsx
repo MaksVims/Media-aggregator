@@ -15,7 +15,7 @@ interface IMovieCardImg {
 
 const MovieCardImg: FC<IMovieCardImg> = ({ movie }) => {
   const { user } = useAuth()
-  const { kinopoiskId: movieId, nameRu, posterUrl: posterUrlPreview, year, ratingImdb: rating} = movie
+  const { kinopoiskId: movieId, nameRu, posterUrl: posterUrlPreview, year, ratingImdb: rating } = movie
   const { addMovieToCollection, removeMovieToCollection, isActive } = useMovieLike({
     movieId, posterUrlPreview, nameRu, rating, year, comment: '', isView: false
   })
@@ -27,12 +27,12 @@ const MovieCardImg: FC<IMovieCardImg> = ({ movie }) => {
   })
 
   return (
-    <div className="flex-grow-0 md:min-w-sm shadow-movieCard rounded-md overflow-hidden md:mr-4 md:mt-4">
+    <div className="flex-grow-0 shadow-movieCard rounded-md overflow-hidden md:mr-6 md:mt-4 flex-shrink-0">
       <Image
         src={movie.posterUrl}
         alt={movie.nameOriginal}
-        height={280}
-        width={205}
+        height={450}
+        width={300}
         className="flex-grow-0"
       />
       <div className={imageBottomClass}>
