@@ -1,10 +1,7 @@
-export type TCollectionItem = {
-  movieId: number,
-  title: string
-}
+import { IFavoriteMovie } from "./movieTypes"
 
 export type TypeCollection = {
-  [key: string]: TCollectionItem
+  [key: string]: IFavoriteMovie
 }
 
 export type TypeMapRecordsToCollection = {

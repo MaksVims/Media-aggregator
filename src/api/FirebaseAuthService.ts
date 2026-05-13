@@ -26,12 +26,9 @@ export default class FirebaseAuthService {
 
   static async updateProfile(
     name: string,
-    tel: string,
-    photoURL: string,
   ) {
     await updateProfile(auth.currentUser!, {
-      displayName: name,
-      photoURL,
+      displayName: name
     })
   }
 

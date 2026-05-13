@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
-import { IMovie } from 'types';
+import { IFavoriteMovie, IMovie } from 'types';
 import { GridMovieCard } from '@/components/main';
 
 interface IGridMovies {
-  movies: IMovie[]
+  movies: IMovie[] | IFavoriteMovie[],
+  // isProfile?: boolean,
+  // onCardClick?: (movie: IFavoriteMovie) => void 
 }
 
 const GridMovies: FC<IGridMovies> = ({ movies }) => (

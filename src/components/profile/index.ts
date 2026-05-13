@@ -1,5 +1,4 @@
 export { default as AccountControlPanel } from './AccountControlPanel'
-export { default as Avatar } from './Avatar'
 export { default as FavoriteMovieList } from './FavoriteMovieList'
 export { default as FavoriteMovieListItem } from './FavoriteMovieListItem'
 export { default as FormEditUserData } from './FormEditUserData'

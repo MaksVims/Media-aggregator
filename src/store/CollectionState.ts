@@ -24,8 +24,7 @@ class CollectionState {
       this.startAsyncLoad()
       const updateResolver = this.updateCollection.bind(this)
       const res = await FirebaseCollectionService.loadCollection(userId, updateResolver)
-      console.log(res);
-      
+
       this.collection = res === null ? {} : res
     } catch {
       throw new CustomError(errorsMessage.LOAD_COLLECTION)
@@ -59,7 +58,7 @@ class CollectionState {
     }
   }
 
-  get moviesToCollection() {
+  get moviesToCollection(): IFavoriteMovie[] {
     return Object.values(this.collection)
   }
 

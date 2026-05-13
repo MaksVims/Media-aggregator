@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { RiCloseFill } from 'react-icons/ri'
 import Link from 'next/link'
-import { TCollectionItem } from 'types';
 import theme from '@/const/theme';
+import { IFavoriteMovie } from 'types';
 
 interface IFavoriteMovieListItem {
-  movie: TCollectionItem,
+  movie: IFavoriteMovie,
   handle: () => {}
 }
 
@@ -13,7 +13,7 @@ const FavoriteMovieListItem: FC<IFavoriteMovieListItem> = ({ movie, handle }) =>
   <li className="text-lg flex justify-between items-center">
     <Link href={`/movies/${movie.movieId}`}>
       <a className="hover:underline mr-2">
-        {movie.title}
+        {movie.nameRu}
       </a>
     </Link>
     <RiCloseFill

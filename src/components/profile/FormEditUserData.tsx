@@ -35,18 +35,6 @@ const FormEditUserData: FC<FormEditUserDataProps> = ({ submitHandler }) => {
           type="text"
           ref={focusRef}
         />
-        <FormInput
-          placeholder="Контактный телефон"
-          label="Номер телефона:"
-          name="tel"
-          type="tel"
-        />
-        <FormInput
-          placeholder="Url ссылка на аватарку"
-          label="Ссылка на аватарку:"
-          name="url"
-          type="url"
-        />
         <button
           className="mt-2 btn-submit"
           type="submit"

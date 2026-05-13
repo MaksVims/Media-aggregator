@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { observer } from 'mobx-react-lite';
 import Link from 'next/link'
 import cn from 'classnames'
-import { IMovie } from 'types';
+import { IFavoriteMovie, IMovie } from 'types';
 import {
   Like, MovieCardLoader, Play, RatingMovie,
 } from '@/components/ui';
@@ -12,12 +12,16 @@ import { useMovieLike } from '@/hooks';
 import { useAuth } from '@/contexts/AuthContext';
 
 interface IGridMoveItem {
-  movie: IMovie
+  movie: IMovie | IFavoriteMovie,
 }
 
 const GridMovieCard: FC<IGridMoveItem> = ({ movie }) => {
   const { user } = useAuth()
   const { movieId, nameRu, posterUrlPreview, rating, year } = movie
+
+  // const favoriteMovie = movie as IFavoriteMovie
+  // const isView = isProfile ? favoriteMovie.isView : false
+
   const {
     removeMovieToCollection,
     addMovieToCollection,

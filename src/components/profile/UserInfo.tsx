@@ -25,12 +25,6 @@ const UserInfo: FC<UserInfoProps> = ({ user }) => {
       <span className={contentClass}>
         {user?.email}
       </span>
-      <span className={titleClass}>
-        Phone:
-      </span>
-      <span className={contentClass}>
-        {user?.phoneNumber || 'Не указан'}
-      </span>
     </ul>
   );
 };

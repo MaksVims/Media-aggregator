@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from 'react';
-import { AlertType, TCollectionItem } from 'types';
+import { AlertType, IFavoriteMovie } from 'types';
 import { errorsMessage, successMessage } from '@/const';
 import { FirebaseCollectionService } from '@/api';
 import { CollectionState } from '@/store';
@@ -9,7 +9,7 @@ import { BoxDisplayCenter } from '@/components/ui';
 
 interface FavoriteMovieListProps {
   title: string,
-  movies: TCollectionItem[],
+  movies: IFavoriteMovie[],
   classNames?: string
 }
 
@@ -36,7 +36,7 @@ const FavoriteMovieList: FC<FavoriteMovieListProps> = ({ title, movies, classNam
               {
                 movies.map((movie) => (
                   <FavoriteMovieListItem
-                    key={movie.title}
+                    key={movie.nameRu}
                     movie={movie}
                     handle={() => removeFavoriteMovie(mapRecords[movie.movieId])}
                   />

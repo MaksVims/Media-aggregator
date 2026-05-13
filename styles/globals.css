@@ -7,7 +7,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 * {
@@ -39,7 +39,7 @@ body {
 
 @layer components {
   .red-frame {
-    @apply border-2 border-solid border-red-400 flex justify-center items-center rounded-sm py-1  px-1
+    @apply border-2 border-solid border-red-400 flex justify-center items-center rounded-sm py-1 px-1
   }
 
   .yellow-frame {
@@ -58,17 +58,16 @@ body {
     @apply absolute text-sm bg-primary-light block rounded-sm py-1 px-3 text-black
   }
 
-  .form-checkbox:checked + span {
+  .form-checkbox:checked+span {
     @apply bg-primary-dark border-transparent
   }
 
   .btn-submit {
-    @apply w-full uppercase rounded-md hover:bg-primary px-6 py-2 hover:text-white tracking-wider font-semibold
-    focus:outline-none bg-primary-light transition duration-100 text-black sm:w-auto sm:self-end shadow-md
+    @apply w-full uppercase rounded-md hover:bg-primary px-6 py-2 hover:text-white tracking-wider font-semibold focus:outline-none bg-primary-light transition duration-100 text-black sm:w-auto sm:self-end shadow-md
   }
 
   .absolute-main {
-    @apply absolute top-0 left-0 pt-60 sm:pt-40 z-10
+    @apply absolute top-0 left-0 right-0 mx-auto pt-60 sm:pt-40 z-10 w-full max-w-[800px]
   }
 
   .min-screen {
@@ -100,8 +99,7 @@ body {
   }
 
   .input {
-    @apply border border-solid border-gray-400 block py-2 px-2 rounded-md
-    focus:outline-none focus:border-primary-light shadow-md
+    @apply border border-solid border-gray-400 block py-2 px-2 rounded-md focus:outline-none focus:border-primary-light shadow-md
   }
 
   .page-main {
@@ -131,6 +129,7 @@ body {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }

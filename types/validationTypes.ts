@@ -26,12 +26,8 @@ export type RegisterValidationErrors = {
 
 export type EditUserDataFormValues = {
   username: string,
-  tel: string,
-  url: string,
 }
 
 export type EditUserDataValidationErrors = {
   username?: string,
-  tel?: string,
-  url?: string,
 }

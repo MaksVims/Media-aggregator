@@ -16,8 +16,8 @@ const PopupEditUserData: FC<PopupEditUserData> = ({ isOpened, onClose }) => {
 
   const saveEditChanges = useCallback(async (values: EditUserDataFormValues) => {
     try {
-      const { url, tel, username } = values
-      await FirebaseAuthService.updateProfile(username, tel, url)
+      const {username } = values
+      await FirebaseAuthService.updateProfile(username)
       showAlert(successMessage.UPDATE_PROFILE, AlertType.SUCCESS)
       onClose()
     } catch (e) {
