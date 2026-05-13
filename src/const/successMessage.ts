@@ -6,4 +6,5 @@ export default {
   ADD_MOVIE_TO_COLLECTION: 'Добавлено в коллекцию',
   REMOVE_MOVIE_TO_COLLECTION: 'Удалено из коллекции',
   UPDATE_PROFILE: 'Профиль обновлен',
+  UPDATE_MOVIE_IN_COLLECTION: 'Фильм обновлён',
 }

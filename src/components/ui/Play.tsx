@@ -5,10 +5,11 @@ import theme from '@/const/theme';
 
 interface IPlay {
   onClick?: () => void,
-  className?: string
+  className?: string,
+  size?: number,
 }
 
-const Play: FC<IPlay> = ({ className }) => {
+const Play: FC<IPlay> = ({ className, size = 70 }) => {
   const playRef = useRef(null)
   const isHover = useHover(playRef.current)
 
@@ -17,7 +18,7 @@ const Play: FC<IPlay> = ({ className }) => {
       <div ref={playRef}>
         <AiFillPlayCircle
           color={!isHover ? theme.colors.primary.DEFAULT : theme.colors.primary.light}
-          size={70}
+          size={size}
           className="cursor-pointer"
         />
       </div>

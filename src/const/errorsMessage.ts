@@ -8,4 +8,5 @@ export default {
   LOGOUT: 'Не удалось выйти',
   LOAD_NEXT_PAGE_MOVIES: 'Ошибка подгрузки данных',
   UPDATE_PROFILE: 'Ошибка обновления профиля',
+  UPDATE_MOVIE_IN_COLLECTION: 'Не удалось обновить фильм',
 }

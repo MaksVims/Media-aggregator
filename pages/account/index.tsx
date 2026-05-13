@@ -18,31 +18,34 @@ const Profile: NextPage = () => {
   return (
     <Seo title={`Личный кабинет ${user?.displayName || ''}`} indexed={false} >
       <MainLayout>
-        <main className="flex justify-center items-center absolute-main min-screen px-4 md:py-0 pb-6 bg-no-repeat bg-center bg-profile bg-cover">
-          <section className="bg-transparent relative rounded-md overflow-hidden w-full max-w-[1000px] mx-auto z-10">
-            <div className="p-4 md:p-6 w-full grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+        {/* Фон на весь экран, позади header (z-0 < z-20 у header) */}
+        <div className="absolute inset-0 z-0 bg-profile bg-cover bg-center bg-no-repeat" />
 
-              <div className="bg-white p-6 rounded-md w-full text-black flex flex-col relative min-h-[350px]">
-                {loadCollection ? (
-                  <div className="absolute inset-0 flex items-center justify-center bg-white rounded-md z-20">
-                    <BoxLoader />
-                  </div>
-                ) : (
-                  <FavoriteMovieList classNames="scrollbar-hide w-full" title="Любимые фильмы" movies={collection} />
-                )}
+        {/* Контент занимает место строго ниже header, без скролла страницы */}
+        <main className="flex-1 overflow-hidden relative z-10 flex justify-center px-4 py-4 pb-6">
+          <section className="w-full max-w-[1000px] flex flex-col gap-4 h-full">
+
+            {/* Верхний ряд — фиксированная высота */}
+            <div className="flex flex-col md:flex-row gap-4 flex-shrink-0">
+              <div className="bg-white p-6 rounded-md w-full flex-1 text-black flex flex-col relative">
+                <UserCardProfile user={user!} classNames="w-full bg-white rounded-md" />
               </div>
-
-              <div className="flex flex-col gap-6 w-full justify-between">
-                <div className="bg-white p-6 rounded-md w-full flex-1">
-                  <UserCardProfile user={user!} classNames="w-full bg-white rounded-md" />
-                </div>
-
-                <div className="bg-white p-6 rounded-md flex justify-center items-center w-full">
-                  <AccountControlPanel />
-                </div>
+              <div className="bg-white p-6 rounded-md flex justify-center items-center md:w-auto w-full">
+                <AccountControlPanel />
               </div>
-
             </div>
+
+            {/* Блок с фильмами — занимает остаток высоты, скроллится внутри */}
+            <div className="flex-1 min-h-0 bg-white rounded-md p-6 text-black relative overflow-y-auto">
+              {loadCollection ? (
+                <div className="absolute inset-0 flex items-center justify-center bg-white rounded-md z-20">
+                  <BoxLoader />
+                </div>
+              ) : (
+                <FavoriteMovieList classNames="w-full" title="Любимые фильмы" movies={collection} />
+              )}
+            </div>
+
           </section>
         </main>
       </MainLayout>

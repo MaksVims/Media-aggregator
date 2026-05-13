@@ -41,4 +41,10 @@ export default class FirebaseCollectionService {
     })
     return true
   }
+
+  static async updateMovieInCollection(recordId: string, updatedMovie: IFavoriteMovie) {
+    const userId = auth.currentUser?.uid
+    const collectionListItemRef = ref(db, `/users/${userId}/collection/${recordId}`)
+    return set(collectionListItemRef, { ...updatedMovie })
+  }
 }
