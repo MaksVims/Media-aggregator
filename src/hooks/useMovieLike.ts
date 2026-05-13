@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { isCollection } from 'helpers';
-import { AlertType, IMovieForDB } from 'types';
+import { AlertType, IFavoriteMovie } from 'types';
 import { CollectionState } from '@/store';
 import { useAlert } from '@/contexts/AlertContext';
 import successMessage from '@/const/successMessage';
 import { CustomError } from '@/factory/CustomError';
 
-export default function useMovieLike(newMovie: IMovieForDB) {
+export default function useMovieLike(newMovie: IFavoriteMovie) {
   const collection = CollectionState.moviesToCollection
   const mapRecords = CollectionState.mapRecordsToCollection
   const [isActive, setIsActive] = useState(false)

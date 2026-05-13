@@ -1,20 +1,20 @@
-import { IMovieByFilterOrTop, IMoviePremier, IReview } from 'types';
+import { IMovie, IReview } from 'types';
 
 export interface IResponseMoviesByFiltersOrTop {
   pagesCount: number,
-  films: IMovieByFilterOrTop[]
+  films: IMovie[]
 }
 
 export interface IResponseSearchByKeyWord {
   keyword: string,
   pagesCount: number,
   searchFilmsCountResult: number,
-  films: IMovieByFilterOrTop[]
+  films: IMovie[]
 }
 
 export interface IResponseMoviesPremieres {
   total: number,
-  items: IMoviePremier[]
+  items: IMovie[]
 }
 
 export interface IResponseReviewsByMovie {
@@ -26,21 +26,17 @@ export interface IResponseReviewsByMovie {
 
 export interface IResponseExternalSource {
   total: number,
-  items: [
-    {
+  items: {
       logoUrl: string,
       platform: string,
       url: string
-    }
-  ]
+  }[]
 }
 
 export interface IResponseMovieImages {
   total: number,
-  items: [
-    {
+  items:{
       imageUrl: string,
       previewUrl: string
-    }
-  ]
+    }[]
 }

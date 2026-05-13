@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { IMovieForDB, TypeCollection, TypeMapRecordsToCollection } from 'types';
+import { IFavoriteMovie, TypeCollection, TypeMapRecordsToCollection } from 'types';
 import FirebaseCollectionService from '@/api/FirebaseCollectionService';
 import { CustomError } from '@/factory/CustomError';
 import errorsMessage from '@/const/errorsMessage';
@@ -39,9 +39,9 @@ class CollectionState {
   }
 
 
-  async addMovieToCollection(movieForDB: IMovieForDB) {
+  async addMovieToCollection(newMovie: IFavoriteMovie) {
     try {
-      await FirebaseCollectionService.addMovieToCollection(movieForDB)
+      await FirebaseCollectionService.addMovieToCollection(newMovie)
     } catch {
       throw new CustomError(errorsMessage.ADD_MOVIE_TO_COLLECTION)
     } finally {

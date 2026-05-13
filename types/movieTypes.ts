@@ -1,46 +1,34 @@
-export interface IMovieByFilterOrTop {
-  filmId: number,
-  nameRu: string,
-  year: string,
-  rating: string,
-  posterUrlPreview: string,
-}
-
-export interface IMoviePremier {
-  kinopoiskId: number
+// полученный фильм в ответе
+export interface IResponseMovie {
+  filmId?:number,
+  kinopoiskId?: number,
   nameRu: string,
   year: number,
+  rating: number,
   posterUrlPreview: string,
 }
 
-export interface IPersonMovie {
-  filmId: number,
-  nameRu: string,
-  year: string,
-  rating: string,
-}
-
-export type MovieDB = IMoviePremier | IMovieByFilterOrTop | IPersonMovie
-
-// фильм для базы данных коллекций пользователя
-export interface IMovieForDB {
+// фильм для сетки и внутренней работы
+export interface IMovie {
   movieId: number,
   nameRu: string,
-  year: string,
+  year: number,
+  rating: number,
   posterUrlPreview: string,
-  rating: string,
+}
+
+// фильм для базы данных коллекций пользователя
+export interface IFavoriteMovie {
+  movieId: number,
+  nameRu: string,
+  year: number,
+  rating: number,
+  posterUrlPreview: string,
   isView: boolean,
   comment: string
 }
 
-export interface IMovieForGrid {
-  movieId: number,
-  nameRu: string,
-  year: string,
-  rating: string | null,
-  posterUrlPreview: string | null,
-}
-
+// подробные данные о конкретном фильме
 export interface ISingleMovie {
   nameRu: string,
   nameOriginal: string,
@@ -65,7 +53,7 @@ export interface ISingleMovie {
 export type ReviewType = 'POSITIVE' | 'NEUTRAL' | 'NEGATIVE'
 
 export interface IReview {
-  reviewId: 'string',
+  reviewId: string,
   reviewType: ReviewType,
   reviewData: string,
   userPositiveRating: number,

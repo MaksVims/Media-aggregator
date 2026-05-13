@@ -1,11 +1,10 @@
 import { makeAutoObservable } from 'mobx';
-import { IMovieForGrid, MovieDB, SortType } from 'types';
+import { IMovie, SortType } from 'types';
 import { getCleanListMoviesForGrid } from 'helpers';
-import { MovieForGrid } from '@/factory/MovieForGrid';
 import CollectionState from '@/store/CollectionState';
 
 class MoviesState {
-  movies: IMovieForGrid[] = []
+  movies: IMovie[] = []
   filter: SortType = SortType.DEFAULT
   sortDirection: 'asc' | 'desc' = 'desc'
   viewMode: 'all' | 'favorite' = 'all'     
@@ -14,9 +13,10 @@ class MoviesState {
     makeAutoObservable(this)
   }
 
-  setMovies(movies: MovieDB[]) {
-    const newMovies = movies.map((movie) => new MovieForGrid(movie))
-    this.movies = [...this.movies, ...getCleanListMoviesForGrid(newMovies)]
+  setMovies(movies: IMovie[]) {
+    console.log(movies);
+    
+    this.movies = [...this.movies, ...getCleanListMoviesForGrid(movies)]
   }
 
   setViewMode = (mode: 'all' | 'favorite') => {
@@ -39,7 +39,7 @@ class MoviesState {
     this.movies = []
   }
 
-  get filteredMovies(): MovieForGrid[] {
+  get filteredMovies(): IMovie[] {
     let result = [...this.movies]
 
     // Сначала фильтруем по режиму просмотра
@@ -54,16 +54,16 @@ class MoviesState {
     switch (this.filter) {
       case SortType.RATING:
         result.sort((a, b) => {
-          const valA = Number(a.rating) || 0
-          const valB = Number(b.rating) || 0
+          const valA = a.rating || 0
+          const valB = b.rating || 0
           return this.sortDirection === 'desc' ? valB - valA : valA - valB
         })
         break
 
       case SortType.YEAR:
         result.sort((a, b) => {
-          const valA = Number(a.year) || 0
-          const valB = Number(b.year) || 0
+          const valA = a.year || 0
+          const valB = b.year || 0
           return this.sortDirection === 'desc' ? valB - valA : valA - valB
         })
         break

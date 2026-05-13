@@ -17,7 +17,7 @@ const MovieCardImg: FC<IMovieCardImg> = ({ movie }) => {
   const { user } = useAuth()
   const { kinopoiskId: movieId, nameRu, posterUrl: posterUrlPreview, year, ratingImdb: rating} = movie
   const { addMovieToCollection, removeMovieToCollection, isActive } = useMovieLike({
-    movieId, posterUrlPreview,nameRu,rating: String(rating),year: String(year), comment: '', isView: false
+    movieId, posterUrlPreview, nameRu, rating, year, comment: '', isView: false
   })
 
   const imageBottomClass = cn({

@@ -1,5 +1,5 @@
-import { MovieForGrid } from '@/factory/MovieForGrid';
+import {IMovie } from 'types'
 
-export default function getCleanListMoviesForGrid(movies: MovieForGrid[]) {
-  return movies.filter((movie) => movie.nameRu && movie.year)
+export default function getCleanListMoviesForGrid(movies: IMovie[]) {
+  return movies.filter((movie) => movie.nameRu && movie.posterUrlPreview)
 }

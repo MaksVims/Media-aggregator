@@ -75,7 +75,8 @@ export default observer(Home);
 export const getStaticProps: GetStaticProps<IHomePageProps> = async () => {
   try {
     const dataMovies = await MovieService.getTopMovies()
-
+    console.log(dataMovies);
+    
     return {
       props: {
         dataMovies

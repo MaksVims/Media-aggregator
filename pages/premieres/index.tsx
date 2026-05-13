@@ -18,7 +18,7 @@ const PremieresPage: NextPage<IPremieresPageProps> = ({dataMovies}) => {
     MoviesState.setMovies(dataMovies.items)
     return () => MoviesState.reset()
   }, [dataMovies.items])
-
+  
   const filteredMovies = MoviesState.filteredMovies
 
   return (
@@ -52,7 +52,7 @@ export default observer(PremieresPage);
 export const getStaticProps: GetStaticProps<IPremieresPageProps> = async () => {
   try {
     const dataMovies = await MovieService.getPremiers()
-
+    
     return {
       props: {
         dataMovies

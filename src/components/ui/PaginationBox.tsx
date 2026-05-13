@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import { Loader } from '@/components/ui';
-import { MovieForGrid } from '@/factory/MovieForGrid';
+import { IMovie } from 'types';
 
 interface PaginationBox {
   loading: boolean,
-  movies: MovieForGrid[]
+  movies: IMovie[]
 }
 
 const PaginationBox: FC<PaginationBox> = ({ loading, children, movies }) => {

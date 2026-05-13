@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { IMovieForGrid } from 'types';
+import { IMovie } from 'types';
 import { GridMovieCard } from '@/components/main';
 
 interface IGridMovies {
-  movies: IMovieForGrid[]
+  movies: IMovie[]
 }
 
 const GridMovies: FC<IGridMovies> = ({ movies }) => (

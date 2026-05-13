@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { observer } from 'mobx-react-lite';
 import Link from 'next/link'
 import cn from 'classnames'
-import { IMovieForGrid } from 'types';
+import { IMovie } from 'types';
 import {
   Like, MovieCardLoader, Play, RatingMovie,
 } from '@/components/ui';
@@ -12,7 +12,7 @@ import { useMovieLike } from '@/hooks';
 import { useAuth } from '@/contexts/AuthContext';
 
 interface IGridMoveItem {
-  movie: IMovieForGrid
+  movie: IMovie
 }
 
 const GridMovieCard: FC<IGridMoveItem> = ({ movie }) => {
@@ -22,9 +22,9 @@ const GridMovieCard: FC<IGridMoveItem> = ({ movie }) => {
     removeMovieToCollection,
     addMovieToCollection,
     isActive,
-  } = useMovieLike({movieId, nameRu, posterUrlPreview: posterUrlPreview || '', rating: rating || '', year, comment: '', isView: false})
+  } = useMovieLike({movieId, nameRu, posterUrlPreview: posterUrlPreview || '', rating: rating || 0, year, comment: '', isView: false})
   const { loading } = CollectionState
-
+  
   if (loading) {
     return <MovieCardLoader />
   }
@@ -56,7 +56,7 @@ const GridMovieCard: FC<IGridMoveItem> = ({ movie }) => {
             {
               movie.rating && (
               <RatingMovie
-                rating={movie.rating || ''}
+                rating={movie.rating || 0}
                 size={20}
                 className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 text-xl"
               />

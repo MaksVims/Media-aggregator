@@ -1,5 +1,5 @@
 import { SortType } from '../types/filtersTypes';
-import { MovieForGrid } from '@/factory/MovieForGrid';
+import { MovieForGrid } from '@/factory/movieNormalize';
 
 export function showPaginationButton(
   currentPage: number,

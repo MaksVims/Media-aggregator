@@ -3,7 +3,7 @@ import { MdOutlineStarRate } from 'react-icons/md';
 import theme from '@/const/theme';
 
 interface IRatingMovie {
-  rating: string,
+  rating: number,
   size: number
   className?: string
 }

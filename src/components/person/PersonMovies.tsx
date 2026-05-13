@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
-import { MovieForGrid } from '@/factory/MovieForGrid';
+import { MovieForGrid } from '@/factory/movieNormalize';
 import { BarSortFiltersPerson } from '@/components/person';
 import { BoxDisplayCenter } from '@/components/ui';
 
