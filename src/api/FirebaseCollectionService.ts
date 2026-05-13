@@ -2,7 +2,7 @@ import { auth, db } from 'service/firebase'
 import {
   DatabaseReference, get, onValue, push, ref, remove, set,
 } from 'firebase/database'
-import { TypeCollection } from 'types';
+import { IMovieForDB, TypeCollection } from 'types';
 
 type updateResolverType = (update: TypeCollection) => Promise<void>
 
@@ -32,16 +32,12 @@ export default class FirebaseCollectionService {
     return remove(collectionListItemRef)
   }
 
-  static async addMovieToCollection(
-    movieId: number,
-    title: string,
-  ) {
+  static async addMovieToCollection(newMovie: IMovieForDB) {
     const userId = auth.currentUser?.uid
     const collectionListRef = ref(db, `/users/${userId}/collection`)
     const newCollectionItemRef = push(collectionListRef)
     await set(newCollectionItemRef, {
-      movieId,
-      title,
+      ...newMovie
     })
     return true
   }

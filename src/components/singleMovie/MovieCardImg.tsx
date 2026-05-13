@@ -15,7 +15,10 @@ interface IMovieCardImg {
 
 const MovieCardImg: FC<IMovieCardImg> = ({ movie }) => {
   const { user } = useAuth()
-  const { addMovieToCollection, removeMovieToCollection, isActive } = useMovieLike(movie.kinopoiskId, movie.nameRu)
+  const { kinopoiskId: movieId, nameRu, posterUrl: posterUrlPreview, year, ratingImdb: rating} = movie
+  const { addMovieToCollection, removeMovieToCollection, isActive } = useMovieLike({
+    movieId, posterUrlPreview,nameRu,rating: String(rating),year: String(year), comment: '', isView: false
+  })
 
   const imageBottomClass = cn({
     'justify-center': !movie.filmLength,

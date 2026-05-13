@@ -22,6 +22,17 @@ export interface IPersonMovie {
 
 export type MovieDB = IMoviePremier | IMovieByFilterOrTop | IPersonMovie
 
+// фильм для базы данных коллекций пользователя
+export interface IMovieForDB {
+  movieId: number,
+  nameRu: string,
+  year: string,
+  posterUrlPreview: string,
+  rating: string,
+  isView: boolean,
+  comment: string
+}
+
 export interface IMovieForGrid {
   movieId: number,
   nameRu: string,

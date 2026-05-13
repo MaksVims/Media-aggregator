@@ -17,12 +17,12 @@ interface IGridMoveItem {
 
 const GridMovieCard: FC<IGridMoveItem> = ({ movie }) => {
   const { user } = useAuth()
-  const { movieId } = movie
+  const { movieId, nameRu, posterUrlPreview, rating, year } = movie
   const {
     removeMovieToCollection,
     addMovieToCollection,
     isActive,
-  } = useMovieLike(movieId, movie.nameRu)
+  } = useMovieLike({movieId, nameRu, posterUrlPreview: posterUrlPreview || '', rating: rating || '', year, comment: '', isView: false})
   const { loading } = CollectionState
 
   if (loading) {
