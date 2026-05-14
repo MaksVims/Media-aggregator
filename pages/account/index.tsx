@@ -18,15 +18,13 @@ const Profile: NextPage = () => {
   return (
     <Seo title={`Личный кабинет ${user?.displayName || ''}`} indexed={false} >
       <MainLayout>
-        {/* Фон на весь экран, позади header (z-0 < z-20 у header) */}
         <div className="absolute inset-0 z-0 bg-profile bg-cover bg-center bg-no-repeat" />
 
-        {/* Контент занимает место строго ниже header, без скролла страницы */}
         <main className="flex-1 overflow-hidden relative z-10 flex justify-center px-4 py-4 pb-6">
           <section className="w-full max-w-[1000px] flex flex-col gap-4 h-full">
 
             {/* Блок с фильмами — занимает основную высоту, скроллится внутри */}
-            <div className="flex-1 min-h-0 bg-white rounded-md p-6 text-black relative overflow-y-auto">
+            <div className={`flex-1 bg-white rounded-md p-6 text-black relative overflow-y-auto${collection.length ? ' min-h-[600px]' : ''}`}>
               {loadCollection ? (
                 <div className="absolute inset-0 flex items-center justify-center bg-white rounded-md z-20">
                   <BoxLoader />
