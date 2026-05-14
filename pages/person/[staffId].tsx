@@ -6,6 +6,7 @@ import { ISpecificStaff } from "types";
 import { MoviesState } from "@/store";
 import { StaffService } from "@/api";
 import { getUniqMoviesForPerson } from "helpers";
+import { Seo } from "@/hoc";
 import { FooterLayout, MainLayout } from "@/components/layouts";
 import { PersonInfo, PersonMovies } from "@/components/person";
 
@@ -24,20 +25,22 @@ export const PersonPage: NextPage<PersonPageProps> = ({ person }) => {
   const filteredMovies = MoviesState.filteredMovies
 
   return (
-    <MainLayout>
-      <div className="max-w-[1024px] mx-auto full">
-        <FooterLayout>
-          <main
-            className="bg-white mt-4 flex flex-col p-4 pb-0 space-y-10">
-            <PersonInfo
-              person={person}
-              countMovies={uniqMovies.length}
-            />
-            <PersonMovies filteredMovies={filteredMovies} />
-          </main>
-        </FooterLayout>
-      </div>
-    </MainLayout>
+    <Seo title={person.nameRu}>
+      <MainLayout>
+        <div className="max-w-[1024px] mx-auto w-full flex flex-col flex-1">
+          <FooterLayout>
+            <main
+              className="bg-white mt-4 flex flex-col flex-1 p-4 pb-0 space-y-10">
+              <PersonInfo
+                person={person}
+                countMovies={uniqMovies.length}
+              />
+              <PersonMovies filteredMovies={filteredMovies} />
+            </main>
+          </FooterLayout>
+        </div>
+      </MainLayout>
+    </Seo>
   )
 }
 

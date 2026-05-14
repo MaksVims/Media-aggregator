@@ -129,7 +129,7 @@ export const getStaticProps: GetStaticProps<IMoviePageProps, IParams> = async (c
         responseFacts,
         responseAwards
       },
-      revalidate: 43200
+      revalidate: 43200 // 12 часов
     }
   } catch {
     return {

@@ -20,8 +20,8 @@ const PersonInfo: FC<PersonInfoProps> = ({ person, countMovies }) => {
         <div className="drop-shadow-lg">
           <Image
             src={person.posterUrl}
-            width={200}
-            height={300}
+            width={240}
+            height={360}
             alt={person.nameRu}
           />
         </div>

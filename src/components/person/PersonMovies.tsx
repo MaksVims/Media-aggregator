@@ -15,20 +15,16 @@ const PersonMovies: FC<PersonMoviesProps> = ({ filteredMovies }) => (
     </h2>
     <BarSortFiltersPerson />
     <div className="w-full">
-      <ul
-        className="space-y-2 relative max-h-[400px] max-w-xl pt-2 overflow-y-auto mx-auto custom-scrollbar pb-4"
-      >
+      <ul className="space-y-2 relative max-h-[500px] max-w-xl pt-2 overflow-y-auto mx-auto custom-scrollbar pb-4">
         {filteredMovies.length
           ? filteredMovies.map((movie, idx) => (
-            <Link key={movie.movieId} passHref href={`/movies/${movie.movieId}`}>
-              <ul>
+            <li key={movie.movieId}>
+              <Link passHref href={`/movies/${movie.movieId}`}>
                 <a className="cursor-pointer hover:underline hover:text-grey-color">
-                  {idx + 1}
-                  .
-                  {movie.nameRu}
+                  {idx + 1}. {movie.nameRu}
                 </a>
-              </ul>
-            </Link>
+              </Link>
+            </li>
           )) : (
             <BoxDisplayCenter title="Фильмов нет" />
           )}

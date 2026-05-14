@@ -23,7 +23,11 @@ const AwardsList: FC<AwardsListProps> = ({ awards }) => {
       <div className="flex flex-wrap gap-5">
         {groups.map((group, i) => (
           <div key={i} className="relative group flex flex-col items-center">
-            <img src={group.imageUrl} alt="Награда" className="h-10 w-auto object-contain" />
+            <img
+              src={group.imageUrl}
+              alt="Награда"
+              className="h-10 w-auto object-contain"
+            />
             <span className="text-xs text-gray-500 mt-1">{group.nominations.length}</span>
             <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 hidden group-hover:block z-10 w-max max-w-[220px] bg-gray-800 text-white text-xs rounded px-2 py-1.5 pointer-events-none">
               <ul className="space-y-1">
