@@ -105,6 +105,10 @@ body {
   .page-main {
     @apply flex flex-col flex-1
   }
+
+  .text-for-nav {
+    @apply hidden sm:block text-sm uppercase tracking-widest opacity-0 group-hover:opacity-100 text-white
+  }
 }
 
 .lds-dual-ring {

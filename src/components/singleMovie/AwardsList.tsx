@@ -20,7 +20,7 @@ const AwardsList: FC<AwardsListProps> = ({ awards }) => {
   return (
     <div className="mt-3">
       <p className="font-medium text-sm mb-2">Награды:</p>
-      <div className="flex flex-wrap gap-5">
+      <div className="flex flex-wrap gap-5 sm:justify-start justify-center">
         {groups.map((group, i) => (
           <div key={i} className="relative group flex flex-col items-center">
             <img

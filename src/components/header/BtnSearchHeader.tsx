@@ -10,15 +10,15 @@ const BtnSearchHeader: FC = () => {
     <>
       <button
         type="button"
-        className="w-full items-center group w-14 flex flex-col cursor-pointer py-1 sm:w-20"
+        className="w-full items-center group w-14 flex flex-col cursor-pointer py-[5px] sm:py-1 sm:w-20"
         onClick={() => setIsOpenPopupSearch(true)}
       >
         <BsSearch
           size={30}
           color="#fff"
-          className="mb-2 h-6 group-hover:animate-bounce xs:h-10"
+          className="sm:mb-2 h-6 group-hover:animate-bounce xs:h-10"
         />
-        <span className="text-sm uppercase tracking-widest opacity-0 group-hover:opacity-100 text-white">
+        <span className="text-for-nav">
           Поиск
         </span>
       </button>

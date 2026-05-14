@@ -20,7 +20,7 @@ const Profile: NextPage = () => {
       <MainLayout>
         <div className="absolute inset-0 z-0 bg-profile bg-cover bg-center bg-no-repeat" />
 
-        <main className="flex-1 overflow-y-auto sm:overflow-hidden relative z-10 flex justify-center px-4 py-4 pb-6">
+        <main className="flex-1 overflow-y-auto sm:overflow-hidden relative z-10 flex justify-center px-4 py-2 sm:py-4 pb-6">
           <section className="w-full max-w-[1000px] flex flex-col gap-4 h-full">
 
             {/* Блок с фильмами — занимает основную высоту, скроллится внутри */}

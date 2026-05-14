@@ -7,8 +7,8 @@ import { Logo } from '@/components/ui';
 const Header: FC = () => {
   const router = useRouter()
   return (
-    <header className="flex flex-col p-5 items-center sm:flex-row sm:justify-between h-auto relative z-20 flex-basis">
-      <nav className="w-full mb-2 sm:mb-0 mt-2">
+    <header className="flex flex-col p-2 sm:p-5 items-center sm:flex-row sm:justify-between h-auto relative z-20 flex-basis">
+      <nav className="w-full sm:mb-0 sm:mt-2 mt-1.5">
         <ul className="flex-center sm:justify-evenly max-w-2xl">
           {NAV_ITEMS.map((item) => (
             <NavItem
@@ -19,7 +19,7 @@ const Header: FC = () => {
           ))}
         </ul>
       </nav>
-      <Logo size={80} className="!w-10 !h-10 sm:!w-[50px] sm:!h-[50px]" />
+      <Logo size={80} className="hidden sm:block" />
     </header>
   );
 };
