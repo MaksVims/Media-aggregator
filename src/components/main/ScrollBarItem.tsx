@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import cn from 'classnames'
 import { IFilterGenre } from 'types';
 import { formatFirstToUppercase } from 'helpers';
+import { MoviesState } from '@/store';
 
 interface ScrollBarItemProps {
   item: IFilterGenre
@@ -17,8 +18,9 @@ const ScrollBarItem: FC<ScrollBarItemProps> = ({ item }) => {
     'transform duration-100 active:text-primary-light hover:scale-125 md:text-2xl': true,
   })
 
-  const handleClick = (isAll:boolean) => {
-    if(isAll) {
+  const handleClick = (isAll: boolean) => {
+    MoviesState.setViewMode('all')
+    if (isAll) {
       router.push('/')
       return
     }

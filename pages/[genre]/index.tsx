@@ -40,12 +40,14 @@ const GenrePage: NextPage<IGenrePageProps> = ({ dataMovies, genre, genreId }) =>
     return () => MoviesState.reset()
   }, [dataMovies.films])
 
-  const paginationView = showPaginationButton(currentPage, totalPages, filter, filteredMovies) && (
-    <BtnLoadNextPage
-      fetching={fetchNextPage}
-      className="text-center my-8"
-    />
-  )
+  const paginationView = MoviesState.viewMode !== 'favorite'
+    && showPaginationButton(currentPage, totalPages, filter, filteredMovies)
+    && (
+      <BtnLoadNextPage
+        fetching={fetchNextPage}
+        className="text-center my-8"
+      />
+    )
 
   return (
     <Seo
@@ -86,7 +88,7 @@ export const getStaticProps: GetStaticProps<IGenrePageProps, IParams> = async (c
   try {
     const { genre } = context.params!
 
-    if(genre === 'all') {
+    if (genre === 'all') {
       return {
         redirect: {
           destination: '/',

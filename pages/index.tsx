@@ -34,12 +34,14 @@ const Home: NextPage<IHomePageProps> = ({ dataMovies }) => {
     return () => MoviesState.reset()
   }, [dataMovies.films])
 
-  const paginationView = showPaginationButton(currentPage, totalPages, filter, filteredMovies) && (
-    <BtnLoadNextPage
-      fetching={fetchNextPage}
-      className="text-center mb-6 mt-2"
-    />
-  )
+  const paginationView = MoviesState.viewMode !== 'favorite'
+    && showPaginationButton(currentPage, totalPages, filter, filteredMovies)
+    && (
+      <BtnLoadNextPage
+        fetching={fetchNextPage}
+        className="text-center mb-6 mt-2"
+      />
+    )
 
   return (
     <Seo

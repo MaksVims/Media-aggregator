@@ -16,7 +16,10 @@ const ScrollBarGenre: FC = () => {
         onMouseDown={handleMouseDown}
         onClickCapture={
           (e) => {
-            if (hasDragged.current) { e.preventDefault(); e.stopPropagation() }
+            if (hasDragged.current) {
+              e.preventDefault();
+              e.stopPropagation()
+            }
           }
         }
       >

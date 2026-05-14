@@ -35,20 +35,13 @@ class MoviesState {
   reset() {
     this.filter = SortType.DEFAULT
     this.sortDirection = 'desc'
-    this.viewMode = 'all'
     this.movies = []
   }
 
   get filteredMovies(): IMovie[] {
-    let result = [...this.movies]
-
-    // Сначала фильтруем по режиму просмотра
-    if (this.viewMode === 'favorite') {
-      const favorites = CollectionState.moviesToCollection
-      result = result.filter(movie =>
-        favorites.some(fav => fav.movieId === movie.movieId)
-      )
-    }
+    let result = this.viewMode === 'favorite'
+      ? [...CollectionState.moviesToCollection] as unknown as IMovie[]
+      : [...this.movies]
 
     // Затем применяем сортировку
     switch (this.filter) {
