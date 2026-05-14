@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
-import { ISingleMovie, IStaffByMovie } from 'types';
-import { MovieDescription, RatingTable } from '@/components/singleMovie';
+import { ISingleMovie, IStaffByMovie, IReponseMovieAwards } from 'types';
+import { MovieDescription, RatingTable, AwardsList } from '@/components/singleMovie';
 
 interface IMovieCardContent {
   movie: ISingleMovie,
-  staff: IStaffByMovie[]
+  staff: IStaffByMovie[],
+  awards: IReponseMovieAwards
 }
 
-const MovieCardContent: FC<IMovieCardContent> = ({ movie, staff }) => (
+const MovieCardContent: FC<IMovieCardContent> = ({ movie, staff, awards }) => (
   <div className="mt-2 w-full">
     <h1 className="font-bold text-2xl mb-4">
       {movie.nameRu}
@@ -57,6 +58,7 @@ const MovieCardContent: FC<IMovieCardContent> = ({ movie, staff }) => (
         movie={movie}
         staff={staff}
       />
+      <AwardsList awards={awards} />
     </div>
   </div>
 );

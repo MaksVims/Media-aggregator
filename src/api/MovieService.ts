@@ -10,6 +10,7 @@ import {
   ISingleMovie,
   IResponseMovieImages,
   IResponseMovieFacts,
+  IReponseMovieAwards,
 } from 'types'
 
 export default class MovieService {
@@ -88,4 +89,11 @@ export default class MovieService {
     const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${movieId}/facts`
     return await fetchMovies(url) as IResponseMovieFacts
   }
+
+  // Получить список наград и премий фильма
+  static async getMovieAwards(movieId: number): Promise<IReponseMovieAwards> {
+    const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${movieId}/awards`
+    return await fetchMovies(url) as IReponseMovieAwards
+  }
+
 }

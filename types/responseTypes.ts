@@ -49,3 +49,13 @@ export interface IResponseMovieFacts {
     spoiler: boolean
   }[]
 }
+
+export interface IReponseMovieAwards {
+  total: number,
+  items: {
+    win: boolean,
+    imageUrl: string,
+    nominationName: string,
+    year: number
+  }[]
+}
