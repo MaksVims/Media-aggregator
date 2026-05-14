@@ -1,28 +1,34 @@
 import { auth, db } from 'service/firebase'
 import {
-  DatabaseReference, get, onValue, push, ref, remove, set,
+  onValue, push, ref, remove, set,
 } from 'firebase/database'
 import { IFavoriteMovie, TypeCollection } from 'types';
 
 type updateResolverType = (update: TypeCollection) => Promise<void>
 
 export default class FirebaseCollectionService {
-  static async loadCollection(
+  static loadCollection(
     userId: string,
     updateResolver: updateResolverType,
-  ) {
+  ): Promise<TypeCollection> {
     const collectionListRef = ref(db, `/users/${userId}/collection`)
-    await FirebaseCollectionService.createObserverUpdate(collectionListRef, updateResolver)
-    return get(collectionListRef).then((snapshot) => snapshot.val())
-  }
 
-  static async createObserverUpdate(
-    observeRef: DatabaseReference,
-    updateResolver: updateResolverType,
-  ) {
-    onValue(observeRef, (snapshot) => {
-      const data = snapshot.val()
-      updateResolver(data)
+    return new Promise((resolve, reject) => {
+      let isFirst = true
+      onValue(
+        collectionListRef,
+        (snapshot) => {
+          const data = snapshot.val()
+          if (isFirst) {
+            isFirst = false
+            resolve(data)
+          }
+          updateResolver(data)
+        },
+        (error) => {
+          if (isFirst) reject(error)
+        }
+      )
     })
   }
 

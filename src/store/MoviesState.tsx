@@ -7,14 +7,16 @@ class MoviesState {
   movies: IMovie[] = []
   filter: SortType = SortType.DEFAULT
   sortDirection: 'asc' | 'desc' = 'desc'
-  viewMode: 'all' | 'favorite' = 'all'     
+  viewMode: 'all' | 'favorite' = 'all'
 
   constructor() {
     makeAutoObservable(this)
   }
 
   setMovies(movies: IMovie[]) {
-    this.movies = [...this.movies, ...getCleanListMoviesForGrid(movies)]
+    const existingId = new Set(this.movies.map(movie => movie.movieId))
+    const clean = getCleanListMoviesForGrid(movies).filter(movie => !existingId.has(movie.movieId))
+    this.movies = [...this.movies, ...clean]
   }
 
   setViewMode = (mode: 'all' | 'favorite') => {
@@ -43,7 +45,7 @@ class MoviesState {
     // Сначала фильтруем по режиму просмотра
     if (this.viewMode === 'favorite') {
       const favorites = CollectionState.moviesToCollection
-      result = result.filter(movie => 
+      result = result.filter(movie =>
         favorites.some(fav => fav.movieId === movie.movieId)
       )
     }
