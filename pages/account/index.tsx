@@ -24,7 +24,7 @@ const Profile: NextPage = () => {
           <section className="w-full max-w-[1000px] flex flex-col gap-4 h-full">
 
             {/* Блок с фильмами — занимает основную высоту, скроллится внутри */}
-            <div className={`flex-1 bg-white rounded-md p-6 text-black relative overflow-y-auto${collection.length ? ' min-h-[600px]' : ''}`}>
+            <div className={`flex-1 bg-white rounded-md p-6 text-black relative overflow-y-auto${collection.length ? ' min-h-[550px]' : ''}`}>
               {loadCollection ? (
                 <div className="absolute inset-0 flex items-center justify-center bg-white rounded-md z-20">
                   <BoxLoader />

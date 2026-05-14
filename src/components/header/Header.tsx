@@ -19,7 +19,7 @@ const Header: FC = () => {
           ))}
         </ul>
       </nav>
-      <Logo size={80}/>
+      <Logo size={80} className="!w-10 !h-10 sm:!w-[50px] sm:!h-[50px]" />
     </header>
   );
 };
