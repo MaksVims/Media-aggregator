@@ -20,12 +20,12 @@ const Seo: FC<SeoProps> = ({
       <title>
         {title}
         {' '}
-        | Смотреть фильмы онлайн в хорошем качестве
+        | Агрегатор медиаконтента — фильмы, факты и рецензии
       </title>
       <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
       <meta name="robots" content={indexed ? 'index,follow' : 'noindex,nofollow'} />
-      <meta name="keywords" content={`Фильмы, смотреть онлайн бесплатно, fullHD, сайт с фильмами, ${keywords}`} />
-      <meta name="description" content={`Сайт с фильмами для бесплатного просмотра. ${description || ''}`} />
+      <meta name="keywords" content={`Фильмы, агрегатор медиаконтента, рецензии на фильмы, факты о фильмах, рейтинг фильмов, ${keywords}`} />
+      <meta name="description" content={`Агрегатор медиаконтента — информация о фильмах, рецензии, факты и рейтинги в одном месте. ${description || ''}`} />
     </Head>
     {children}
   </>
