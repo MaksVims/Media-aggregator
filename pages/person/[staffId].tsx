@@ -1,28 +1,28 @@
-import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import {useEffect, useMemo} from "react";
-import {ParsedUrlQuery} from "querystring";
-import {observer} from "mobx-react-lite";
-import {ISpecificStaff} from "types";
-import {MoviesState} from "@/store";
-import {StaffService} from "@/api";
-import {getUniqMoviesForPerson} from "helpers";
-import {FooterLayout, MainLayout} from "@/components/layouts";
-import {PersonInfo, PersonMovies} from "@/components/person";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { useEffect, useMemo } from "react";
+import { ParsedUrlQuery } from "querystring";
+import { observer } from "mobx-react-lite";
+import { ISpecificStaff } from "types";
+import { MoviesState } from "@/store";
+import { StaffService } from "@/api";
+import { getUniqMoviesForPerson } from "helpers";
+import { FooterLayout, MainLayout } from "@/components/layouts";
+import { PersonInfo, PersonMovies } from "@/components/person";
 
 interface PersonPageProps {
   person: ISpecificStaff
 }
 
-export const PersonPage: NextPage<PersonPageProps> = ({person}) => {
+export const PersonPage: NextPage<PersonPageProps> = ({ person }) => {
   const uniqMovies = useMemo(() => getUniqMoviesForPerson(person), [person])
-  
+
   useEffect(() => {
     MoviesState.setMovies(uniqMovies)
     return () => MoviesState.reset()
   }, [uniqMovies])
-  
+
   const filteredMovies = MoviesState.filteredMovies
-  
+
   return (
     <MainLayout>
       <div className="max-w-[1024px] mx-auto full">
@@ -33,7 +33,7 @@ export const PersonPage: NextPage<PersonPageProps> = ({person}) => {
               person={person}
               countMovies={uniqMovies.length}
             />
-            <PersonMovies filteredMovies={filteredMovies}/>
+            <PersonMovies filteredMovies={filteredMovies} />
           </main>
         </FooterLayout>
       </div>
@@ -48,14 +48,15 @@ interface IParamsPersonPage extends ParsedUrlQuery {
 }
 
 export const getStaticProps: GetStaticProps<PersonPageProps, IParamsPersonPage> = async (ctx) => {
-  const {staffId} = ctx.params!
+  const { staffId } = ctx.params!
   try {
     const person = await StaffService.getSpecificStaff(Number(staffId))
 
     return {
       props: {
         person
-      }
+      },
+      revalidate: 604800 // месяц
     }
   } catch {
     return {

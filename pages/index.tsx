@@ -81,7 +81,8 @@ export const getStaticProps: GetStaticProps<IHomePageProps> = async () => {
     return {
       props: {
         dataMovies
-      }
+      },
+      revalidate: 43200 // 12 часов
     }
   } catch (e) {
     return {

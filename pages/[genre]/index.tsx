@@ -106,6 +106,7 @@ export const getStaticProps: GetStaticProps<IGenrePageProps, IParams> = async (c
         genre: filterItem.genre,
         genreId: filterItem.id,
       },
+      revalidate: 43200, // 12 часов
     }
   } catch (e) {
     return {
