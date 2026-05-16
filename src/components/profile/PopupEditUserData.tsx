@@ -1,8 +1,7 @@
 import React, { FC, useCallback } from 'react';
 import { AlertType, EditUserDataFormValues } from 'types';
 import { errorsMessage, successMessage } from '@/const';
-import { useAlert } from '@/contexts';
-import { FirebaseAuthService } from '@/api';
+import { useAlert, useAuth } from '@/contexts';
 import { MainPopup } from '@/components/ui/popup';
 import { FormEditUserData } from '@/components/profile';
 
@@ -13,17 +12,18 @@ interface PopupEditUserData {
 
 const PopupEditUserData: FC<PopupEditUserData> = ({ isOpened, onClose }) => {
   const { showAlert } = useAlert()
+  const { updateName } = useAuth()
 
   const saveEditChanges = useCallback(async (values: EditUserDataFormValues) => {
     try {
       const {username } = values
-      await FirebaseAuthService.updateProfile(username)
+      await updateName(username)
       showAlert(successMessage.UPDATE_PROFILE, AlertType.SUCCESS)
       onClose()
     } catch (e) {
       showAlert(errorsMessage.UPDATE_PROFILE, AlertType.ERROR)
     }
-  }, [onClose])
+  }, [onClose, updateName])
 
   return (
     <MainPopup

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { useRouter } from 'next/router';
 import { AlertType } from 'types';
-import { FirebaseAuthService } from '@/api';
 import { useToggle } from '@/hooks';
+import { useAuth } from '@/contexts/AuthContext';
 import { useAlert } from '@/contexts/AlertContext';
 import { PopupRemoveAccount } from '@/components/profile';
 import { errorsMessage, successMessage } from '@/const';
@@ -14,11 +14,12 @@ const AccountControlPanel: FC = () => {
     closeRemoveAccountPopup,
   ] = useToggle()
   const router = useRouter()
+  const { logout } = useAuth()
   const { showAlert } = useAlert()
 
-  const logout = async () => {
+  const handleLogout = async () => {
     try {
-      await FirebaseAuthService.logout()
+      await logout()
       await router.push('/')
       showAlert(successMessage.LOGOUT, AlertType.SUCCESS)
     } catch {
@@ -32,7 +33,7 @@ const AccountControlPanel: FC = () => {
     >
       <button
         type="button"
-        onClick={logout}
+        onClick={handleLogout}
         className="btn btn-danger"
       >
         Выход

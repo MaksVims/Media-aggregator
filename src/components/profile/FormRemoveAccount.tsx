@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 import { useRouter } from 'next/router';
 import { AlertType } from 'types';
-import { FirebaseAuthService } from '@/api';
 import { useAuth } from '@/contexts/AuthContext';
 import { useAlert } from '@/contexts/AlertContext';
 import { errorsMessage, successMessage } from '@/const';
@@ -16,7 +15,7 @@ const FormRemoveAccount: FC<FormRemoveAccountProps> = ({ onClose }) => {
   const focusRef = useRef<HTMLInputElement | null>(null)
   const [currentEmail, setCurrentEmail] = useState('')
   const router = useRouter()
-  const { user } = useAuth()
+  const { user, deleteAccount } = useAuth()
   const { showAlert } = useAlert()
 
   const isExact = currentEmail === user?.email
@@ -27,7 +26,7 @@ const FormRemoveAccount: FC<FormRemoveAccountProps> = ({ onClose }) => {
 
   const handlerRemoveAccount = async () => {
     try {
-      await FirebaseAuthService.deleteAccount()
+      await deleteAccount()
       showAlert(successMessage.REMOVE_ACCOUNT, AlertType.SUCCESS)
       await router.push('/')
     } catch (e) {

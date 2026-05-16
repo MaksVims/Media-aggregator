@@ -1,17 +1,18 @@
 import React, { FC } from 'react';
 import { ImExit } from 'react-icons/im';
 import { AlertType } from 'types';
-import { FirebaseAuthService } from '@/api';
+import { useAuth } from '@/contexts/AuthContext';
 import successMessage from '@/const/successMessage';
 import errorsMessage from '@/const/errorsMessage';
 import { useAlert } from '@/contexts';
 
 const BtnSignOut: FC = () => {
+  const { logout } = useAuth()
   const { showAlert } = useAlert()
 
   const signOut = async () => {
     try {
-      await FirebaseAuthService.logout()
+      await logout()
       showAlert(successMessage.LOGOUT, AlertType.SUCCESS)
     } catch (e) {
       showAlert(errorsMessage.LOGOUT, AlertType.ERROR)

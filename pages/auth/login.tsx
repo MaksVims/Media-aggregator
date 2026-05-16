@@ -2,10 +2,9 @@ import React, {useCallback} from 'react';
 import {NextPage} from "next";
 import Link from 'next/link'
 import {useRouter} from "next/router";
-import {useAlert} from '@/contexts';
+import {useAlert, useAuth} from '@/contexts';
 import {useFetch} from '@/hooks';
 import {AlertType, LoginFormValues} from 'types';
-import {FirebaseAuthService} from '@/api';
 import {errorsMessage, successMessage} from "@/const";
 import {NoAccessUser, Seo} from '@/hoc';
 import {FormLogin} from "@/components/auth";
@@ -13,18 +12,19 @@ import {BoxLoader} from "@/components/ui";
 
 const Login: NextPage = () => {
   const {showAlert} = useAlert()
+  const { login: authLogin } = useAuth()
   const router = useRouter()
 
   const [login, loading] = useFetch(useCallback(async (values: LoginFormValues) => {
     try {
       const {email, password} = values
-      const user = await FirebaseAuthService.login(email, password)
+      const user = await authLogin(email, password)
       showAlert(successMessage.AUTH_LOGIN(user.displayName, user.email), AlertType.SUCCESS)
       await router.push('/account')
     } catch (e) {
       showAlert(errorsMessage.AUTH_LOGIN, AlertType.ERROR)
     }
-  }, [showAlert, router]))
+  }, [showAlert, router, authLogin]))
 
   return (
     <Seo title={'Страница входа посетителя'}>

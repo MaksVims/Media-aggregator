@@ -1,13 +1,19 @@
 import React, {
-  FC, useContext, useEffect, useMemo, useState,
+  FC, useCallback, useContext, useEffect, useMemo, useState,
 } from 'react';
 import { onAuthStateChanged, User } from '@firebase/auth';
 import { auth } from 'service/firebase';
 import { TOKEN } from '@/const';
+import { FirebaseAuthService } from '@/api';
 
 interface IAuthContext {
   user: User | null,
-  loadingUser: boolean
+  loadingUser: boolean,
+  login: (email: string, password: string) => Promise<User>
+  logout: () => Promise<void>
+  register: (email: string, password: string, name?: string) => Promise<User>
+  updateName: (name: string) => Promise<void>
+  deleteAccount: () => Promise<boolean>
 }
 
 const AuthContext = React.createContext<IAuthContext>({} as IAuthContext)
@@ -29,7 +35,35 @@ const AuthContextProvider: FC = ({ children }) => {
     })
   }, [])
 
-  const credentials: IAuthContext = useMemo(() => ({ user, loadingUser }), [user, loadingUser])
+  const login = useCallback(
+    (email: string, password: string) => FirebaseAuthService.login(email, password),
+    []
+  )
+
+  const logout = useCallback(
+    () => FirebaseAuthService.logout(),
+    []
+  )
+
+  const register = useCallback(
+    (email: string, password: string, name?: string) => FirebaseAuthService.register(email, password, name),
+    []
+  )
+
+  const updateName = useCallback(
+    (name: string) => FirebaseAuthService.updateProfile(name),
+    []
+  )
+
+  const deleteAccount = useCallback(
+    () => FirebaseAuthService.deleteAccount(),
+    []
+  )
+
+  const credentials: IAuthContext = useMemo(
+    () => ({ user, loadingUser, login, logout, register, updateName, deleteAccount }),
+    [user, loadingUser, login, logout, register, updateName, deleteAccount]
+  )
 
   return (
     <AuthContext.Provider value={credentials}>

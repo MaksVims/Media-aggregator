@@ -2,23 +2,24 @@ import React from 'react';
 import {NextPage} from "next";
 import Link from "next/link";
 import {useRouter} from "next/router";
-import {FirebaseAuthService} from "@/api";
 import {AlertType, RegisterFormValues} from "types";
 import {useFetch} from "@/hooks";
 import {errorsMessage, successMessage} from "@/const";
 import {useAlert} from "@/contexts/AlertContext";
+import {useAuth} from "@/contexts/AuthContext";
 import {NoAccessUser, Seo} from "@/hoc";
 import {FormRegister} from "@/components/auth";
 import {BoxLoader} from "@/components/ui";
 
 const Register: NextPage = () => {
   const {showAlert} = useAlert()
+  const { register: authRegister } = useAuth()
   const router = useRouter()
 
   const [register, loading] = useFetch(async (values: RegisterFormValues) => {
     try {
       const {password, email, username} = values
-      const user = await FirebaseAuthService.register(email, password, username || '')
+      const user = await authRegister(email, password, username || '')
       showAlert(successMessage.AUTH_REGISTER(user.displayName, user.email), AlertType.SUCCESS)
       await router.push('/')
     } catch (e) {
