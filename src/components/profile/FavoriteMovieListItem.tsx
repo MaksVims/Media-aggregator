@@ -11,7 +11,7 @@ interface IFavoriteMovieListItem {
 
 const FavoriteMovieListItem: FC<IFavoriteMovieListItem> = ({ movie, handle }) => (
   <li className="text-lg flex justify-between items-center">
-    <Link href={`/movies/${movie.movieId}`}>
+    <Link href={`/movies/${movie.movieId}`} prefetch={false}>
       <a className="hover:underline mr-2">
         {movie.nameRu}
       </a>

@@ -38,7 +38,7 @@ const GridMovieCard: FC<IGridMoveItem> = ({ movie, onEdit, isProfile }) => {
     <article
       className={`group cursor-pointer overflow-hidden${isProfile ? ' flex flex-col h-full' : ' transform transition-transform duration-200 sm:hover:scale-105'}`}
     >
-      <Link href={`/movies/${movieId}`}>
+      <Link href={`/movies/${movieId}`} prefetch={false}>
         <a>
           <div className="relative aspect-[2/3] w-full overflow-hidden rounded-md">
             <Image
