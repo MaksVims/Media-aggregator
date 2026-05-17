@@ -23,6 +23,7 @@ const PersonInfo: FC<PersonInfoProps> = ({ person, countMovies }) => {
             width={240}
             height={360}
             alt={person.nameRu}
+            unoptimized
           />
         </div>
       </div>

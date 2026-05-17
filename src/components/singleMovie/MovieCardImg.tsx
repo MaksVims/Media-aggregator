@@ -35,6 +35,7 @@ const MovieCardImg: FC<IMovieCardImg> = ({ movie }) => {
         width={300}
         layout="responsive"
         className="flex-grow-0"
+        unoptimized
       />
       <div className={imageBottomClass}>
         {
