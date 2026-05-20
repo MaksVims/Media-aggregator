@@ -4,10 +4,11 @@ import { hasCookie } from 'helpers';
 import { TOKEN } from '@/const';
 
 interface NoAccessUserProps {
-  to: string
+  to: string,
+  private?: boolean
 }
 
-const NoAccessUser:FC<NoAccessUserProps> = ({ children, to }) => {
+const NoAccessUser: FC<NoAccessUserProps> = ({ children, to }) => {
   const router = useRouter()
 
   useEffect(() => {

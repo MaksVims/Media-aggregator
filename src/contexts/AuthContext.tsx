@@ -25,9 +25,9 @@ const AuthContextProvider: FC = ({ children }) => {
   useEffect(() => {
     return onAuthStateChanged(auth, (user) => {
       if (user) {
-        document.cookie = `${TOKEN}=${user?.refreshToken};max-age=3600;path=/`
+        document.cookie = `${TOKEN}=${user?.refreshToken};max-age=3600;path=/;Secure;SameSite=Strict`
       } else {
-        document.cookie = `${TOKEN}=${null};max-age=${-1};path=/`
+        document.cookie = `${TOKEN}=;max-age=0;path=/;Secure;SameSite=Strict`
       }
 
       setUser(user || null)
