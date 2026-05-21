@@ -47,7 +47,7 @@ const PopupEditFavoriteMovie: FC<PopupEditFavoriteMovieProps> = ({ movie, record
         <textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          placeholder="Комментарий..."
+          placeholder="Заметка..."
           className="input w-full resize-none h-24 text-sm"
         />
         <button
