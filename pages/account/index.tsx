@@ -30,7 +30,7 @@ const Profile: NextPage = () => {
                   <BoxLoader />
                 </div>
               ) : (
-                <FavoriteMovieList classNames="w-full" title="Любимые фильмы" movies={collection} />
+                <FavoriteMovieList classNames="w-full" title="Моя коллекция" movies={collection} />
               )}
             </div>
 
