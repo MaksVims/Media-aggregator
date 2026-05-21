@@ -1,20 +1,20 @@
-import React, {useCallback, useEffect} from 'react';
-import {GetServerSideProps, NextPage} from "next";
-import {observer} from 'mobx-react-lite';
-import {IResponseSearchByKeyWord, SortType} from "types";
-import {MovieService} from "@/api";
-import {MoviesState} from "@/store";
-import {usePagination} from "@/hooks";
+import React, { useCallback, useEffect } from 'react';
+import { GetServerSideProps, NextPage } from "next";
+import { observer } from 'mobx-react-lite';
+import { IResponseSearchByKeyWord, SortType } from "types";
+import { MovieService } from "@/api";
+import { MoviesState } from "@/store";
+import { usePagination } from "@/hooks";
 import Seo from "@/hoc/Seo";
-import {FooterLayout, MainLayout} from "@/components/layouts";
-import {BarSortFilters, GridMovies, ScrollBarGenre} from "@/components/main";
-import {BoxDisplayCenter, BoxLoader, BtnLoadNextPage} from "@/components/ui";
+import { FooterLayout, MainLayout } from "@/components/layouts";
+import { BarSortFilters, GridMovies, ScrollBarGenre } from "@/components/main";
+import { BoxDisplayCenter, BoxLoader, BtnLoadNextPage } from "@/components/ui";
 
 interface SearchPageProps {
   dataMovies: IResponseSearchByKeyWord
 }
 
-const SearchPage: NextPage<SearchPageProps> = ({dataMovies}) => {
+const SearchPage: NextPage<SearchPageProps> = ({ dataMovies }) => {
   const totalPages = Math.ceil(dataMovies.searchFilmsCountResult / 20)
   const filter = MoviesState.filter
 
@@ -48,13 +48,13 @@ const SearchPage: NextPage<SearchPageProps> = ({dataMovies}) => {
       <MainLayout>
         <FooterLayout>
           <main className="page-main">
-            <ScrollBarGenre/>
-            <BarSortFilters/>
+            <ScrollBarGenre />
+            <BarSortFilters />
             <div className="text-white text-xl text-center mt-10">
-              <h2>Всего найдено: {dataMovies.searchFilmsCountResult} фильмов</h2>
+              <h2>Всего найдено: {dataMovies.searchFilmsCountResult}</h2>
             </div>
             {filteredMovies.length ?
-              <GridMovies movies={filteredMovies}/> : (
+              <GridMovies movies={filteredMovies} /> : (
                 <div className="flex flex-1">
                   <BoxDisplayCenter
                     title="Фильмы не найдены"
@@ -63,7 +63,7 @@ const SearchPage: NextPage<SearchPageProps> = ({dataMovies}) => {
                 </div>
               )}
             <div className="relative">
-              {loadNextPage ? <BoxLoader/> : paginationView}
+              {loadNextPage ? <BoxLoader /> : paginationView}
             </div>
           </main>
         </FooterLayout>
