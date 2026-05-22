@@ -44,7 +44,7 @@ export default class MovieService {
   }
 
   // 100 самых популярных фильмов
-  static async getTopMovies(page: number = 15): Promise<IResponseMoviesByFiltersOrTop> {
+  static async getTopMovies(page: number = 10): Promise<IResponseMoviesByFiltersOrTop> {
     const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`
     const res = await fetchMovies(url) as IResponseMoviesByFiltersOrTop
     return {
