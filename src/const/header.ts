@@ -5,7 +5,7 @@ import { MdOutlineInput } from 'react-icons/md';
 import { INavItem } from 'types';
 
 export const NAV_ITEMS: INavItem[] = [
-  { title: 'На главную', Icon: AiOutlineHome, path: '/' },
+  { title: 'Главная', Icon: AiOutlineHome, path: '/' },
   { title: 'Премьеры', Icon: BsLightningCharge, path: '/premieres' },
   {
     title: 'Аккаунт', Icon: BiUser, path: '/account', isAuth: true, redirect: '/auth/register',
