@@ -13,7 +13,7 @@ const PosterMovie: FC<PosterMovieProps> = ({ images }) => {
 
   return (
     <section className="bg-white py-5">
-      <h2 className="text-xl font-semibold mb-4 text-center">Кадры из фильма</h2>
+      <h2 className="text-xl font-semibold mb-4 text-center">Кадры</h2>
       <div
         ref={sliderRef as React.RefObject<HTMLDivElement>}
         className="flex gap-3 overflow-x-auto scrollbar-hide px-4 pb-2 select-none cursor-grab active:cursor-grabbing"

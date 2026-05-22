@@ -17,7 +17,7 @@ const MovieFacts: FC<MovieFactsProps> = ({ facts }) => {
 
   return (
     <section className="bg-white py-7 fact-text">
-      <h2 className="text-xl font-semibold mb-4 text-center">Факты о фильме</h2>
+      <h2 className="text-xl font-semibold mb-4 text-center">Факты</h2>
       <ul className="px-4 space-y-3">
         {visible.map((item, index) => (
           <FactItem key={index} {...item} />

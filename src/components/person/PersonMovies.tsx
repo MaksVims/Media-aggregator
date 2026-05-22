@@ -11,7 +11,7 @@ interface PersonMoviesProps {
 const PersonMovies: FC<PersonMoviesProps> = ({ filteredMovies }) => (
   <section className="space-y-6 pb-6">
     <h2 className="text-center text-2xl font-medium">
-      Список фильмов
+      Фильмография
     </h2>
     <BarSortFiltersPerson />
     <div className="w-full">
