@@ -14,7 +14,7 @@ const BarSortFilters: FC = () => {
   return (
     <div className="flex flex-col gap-4 mt-10 px-4">
       <div className="flex flex-wrap gap-4 justify-center" >
-        
+
         <div>
           <PanelSortFilters type="default" />
         </div>
@@ -25,7 +25,7 @@ const BarSortFilters: FC = () => {
               onClick={() => setViewMode('all')}
               className={`${baseClass} ${viewMode === 'all' ? activeClass : ''}`}
             >
-              Все фильмы
+              Весь контент
             </button>
 
             <button
