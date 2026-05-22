@@ -32,7 +32,7 @@ const BarSortFilters: FC = () => {
               onClick={() => setViewMode('favorite')}
               className={`${baseClass} ${viewMode === 'favorite' ? activeClass : ''}`}
             >
-              Избранное
+              Коллекция
             </button>
           </div>
         )}
