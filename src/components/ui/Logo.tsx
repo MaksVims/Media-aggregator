@@ -17,7 +17,7 @@ const Logo: React.FC<LogoProps> = ({ size = 80, className = '' }) => {
       aria-labelledby='LogoTitle'
       className={`text-white cursor-pointer ${className}`}
     >
-      <title id='LogoTitle'>Логотип агрегатора медиаконтента</title>
+      <title id='LogoTitle'>Агрегатор медиаконтента</title>
       <path
         d="M15 85V20L50 60L85 20V85"
         stroke="currentColor"

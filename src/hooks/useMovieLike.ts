@@ -30,7 +30,7 @@ export default function useMovieLike(newMovie: IFavoriteMovie) {
   const removeMovieToCollection = useCallback(async () => {
     try {
       await CollectionState.removeMovieToCollection(mapRecords[newMovie.movieId])
-      showAlert(successMessage.REMOVE_MOVIE_TO_COLLECTION, AlertType.ERROR)
+      showAlert(successMessage.REMOVE_MOVIE_TO_COLLECTION, AlertType.SUCCESS)
     } catch (e) {
       if (e instanceof CustomError) {
         showAlert(e.message, AlertType.ERROR)

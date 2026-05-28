@@ -77,7 +77,7 @@ const MovieId: NextPage<IMoviePageProps> = ({ movie, staff, responseReviews, res
               return reviews.length > 0 ? (
                 <section className="py-7 bg-white text-center">
                   <ul className="px-4 space-y-4">
-                    <h2 className="text-xl font-semibold mb-4">Рецензии на фильм</h2>
+                    <h2 className="text-xl font-semibold mb-4">Рецензии</h2>
                     {reviews.map(review => (
                       <li key={review.reviewId}>
                         <ReviewItem review={review} />
