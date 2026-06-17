@@ -28,7 +28,7 @@ const MovieCardImg: FC<IMovieCardImg> = ({ movie }) => {
 
   return (
     <div className="flex-grow-0 shadow-movieCard rounded-md overflow-hidden md:mr-6 md:mt-4 flex-shrink-0 w-[200px] xs:w-[300px]">
-      <Image
+      {/* <Image
         src={movie.posterUrl}
         alt={movie.nameOriginal}
         height={450}
@@ -37,7 +37,14 @@ const MovieCardImg: FC<IMovieCardImg> = ({ movie }) => {
         className="flex-grow-0"
         unoptimized
         referrerPolicy="no-referrer"
-      />
+      /> */}
+      <div className="w-full aspect-[2/3] relative flex-grow-0">
+        <img
+          src={`/api/poster?url=${encodeURIComponent(movie.posterUrl)}`}
+          alt={movie.nameOriginal || movie.nameRu || "Постер фильма"}
+          className="w-full h-full object-cover"
+        />
+      </div>
       <div className={imageBottomClass}>
         {
           movie.filmLength && (

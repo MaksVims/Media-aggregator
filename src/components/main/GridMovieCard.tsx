@@ -50,14 +50,10 @@ const GridMovieCard: FC<IGridMoveItem> = ({ movie, onEdit, isProfile }) => {
               unoptimized
               referrerPolicy="no-referrer"
             /> */}
-            <div
-              className="relative"
-              style={{ width: '100%', aspectRatio: '475/650' }}
-            >
+            <div className="relative" style={{ width: '100%', aspectRatio: '475/650' }}>
               <img
-                src={movie.posterUrlPreview || '/images/no_image.png'}
+                src={movie.posterUrlPreview ? `/api/poster?url=${encodeURIComponent(movie.posterUrlPreview)}` : '/images/no_image.png'}
                 alt={movie.nameRu || "Превью фильма"}
-                referrerPolicy="no-referrer"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
