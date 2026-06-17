@@ -41,22 +41,20 @@ const GridMovieCard: FC<IGridMoveItem> = ({ movie, onEdit, isProfile }) => {
       <Link href={`/movies/${movieId}`} prefetch={false}>
         <a>
           <div className="relative aspect-[2/3] w-full overflow-hidden rounded-md">
-            {/* <Image
+            <Image
               src={movie.posterUrlPreview || '/images/no_image.png'}
               width={475}
               height={650}
-              alt={movie.nameRu}
+              alt={movie.nameRu || "Постер фильма"}
               objectFit='cover'
-              unoptimized
-              referrerPolicy="no-referrer"
-            /> */}
-            <div className="relative" style={{ width: '100%', aspectRatio: '475/650' }}>
+            />
+            {/* <div className="relative" style={{ width: '100%', aspectRatio: '475/650' }}>
               <img
                 src={movie.posterUrlPreview ? `/api/poster?url=${encodeURIComponent(movie.posterUrlPreview)}` : '/images/no_image.png'}
                 alt={movie.nameRu || "Превью фильма"}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
-            </div>
+            </div> */}
             <div className={cn('absolute left-0 top-0 full bg-black', isView ? 'opacity-70' : 'opacity-0 group-hover:opacity-70')} />
             {!isView && <Play className="group-hover:opacity-100 opacity-0 flex-center" size={isProfile ? 36 : 70} />}
             {
