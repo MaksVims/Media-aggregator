@@ -41,7 +41,7 @@ const GridMovieCard: FC<IGridMoveItem> = ({ movie, onEdit, isProfile }) => {
       <Link href={`/movies/${movieId}`} prefetch={false}>
         <a>
           <div className="relative aspect-[2/3] w-full overflow-hidden rounded-md">
-            <Image
+            {/* <Image
               src={movie.posterUrlPreview || '/images/no_image.png'}
               width={475}
               height={650}
@@ -49,7 +49,15 @@ const GridMovieCard: FC<IGridMoveItem> = ({ movie, onEdit, isProfile }) => {
               objectFit='cover'
               unoptimized
               referrerPolicy="no-referrer"
-            />
+            /> */}
+            <div className="w-full aspect-[2/3] relative flex-grow-0">
+              <img
+                src={movie.posterUrlPreview || '/images/no_image.png'}
+                alt={movie.nameRu || "Постер фильма"}
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div className={cn('absolute left-0 top-0 full bg-black', isView ? 'opacity-70' : 'opacity-0 group-hover:opacity-70')} />
             {!isView && <Play className="group-hover:opacity-100 opacity-0 flex-center" size={isProfile ? 36 : 70} />}
             {
