@@ -48,6 +48,7 @@ const GridMovieCard: FC<IGridMoveItem> = ({ movie, onEdit, isProfile }) => {
               alt={movie.nameRu}
               objectFit='cover'
               unoptimized
+              referrerPolicy="no-referrer"
             />
             <div className={cn('absolute left-0 top-0 full bg-black', isView ? 'opacity-70' : 'opacity-0 group-hover:opacity-70')} />
             {!isView && <Play className="group-hover:opacity-100 opacity-0 flex-center" size={isProfile ? 36 : 70} />}
