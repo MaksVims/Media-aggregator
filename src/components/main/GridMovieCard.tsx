@@ -50,12 +50,15 @@ const GridMovieCard: FC<IGridMoveItem> = ({ movie, onEdit, isProfile }) => {
               unoptimized
               referrerPolicy="no-referrer"
             /> */}
-            <div className="w-full aspect-[2/3] relative flex-grow-0">
+            <div
+              className="relative"
+              style={{ width: '100%', aspectRatio: '475/650' }}
+            >
               <img
                 src={movie.posterUrlPreview || '/images/no_image.png'}
-                alt={movie.nameRu || "Постер фильма"}
+                alt={movie.nameRu || "Превью фильма"}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
             <div className={cn('absolute left-0 top-0 full bg-black', isView ? 'opacity-70' : 'opacity-0 group-hover:opacity-70')} />
