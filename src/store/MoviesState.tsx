@@ -43,6 +43,8 @@ class MoviesState {
       ? [...CollectionState.moviesToCollection] as unknown as IMovie[]
       : [...this.movies]
 
+    result = result.filter(movie => movie.posterUrlPreview && !movie.posterUrlPreview.includes('no-poster.png'))
+
     // Затем применяем сортировку
     switch (this.filter) {
       case SortType.RATING:

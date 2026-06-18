@@ -78,9 +78,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const keyword = ctx.query.keyword
   const dataMovies = await MovieService.getMoviesByKeyWord(String(keyword), 1)
 
+  const serializedData = JSON.parse(JSON.stringify(dataMovies))
+
   return {
     props: {
-      dataMovies
+      dataMovies: serializedData
     }
   }
 }
